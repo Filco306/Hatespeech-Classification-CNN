@@ -1,0 +1,11 @@
+data_handling/set_twitter_api_keys.py
+data_handling/set_up_twitter_env_vars.sh
+*.tex
+*.log
+*.zip
+Pics/
+Papers/
+*.docx
+*.aux
+*.bbl
+*.synctex.gz
