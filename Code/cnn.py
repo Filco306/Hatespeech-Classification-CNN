@@ -1,5 +1,4 @@
-from useful_functions import pre_process_data, split_data, get_w2vec_model
-
+from useful_functions import *
 import sklearn as sk
 import pandas as pd
 import numpy as np
@@ -17,9 +16,12 @@ import nltk # Prepare stopwords
 import re
 import argparse
 
+
 parser = argparse.ArgumentParser(description='Input for the model.')
 parser.add_argument('-regval', type=float)
 parser.add_argument('-activationfunction', type=str, default='relu')
+parser.add_argument('-use_pretrained_vecs', type=str2bool, default='False')
+parser.add_argument('-emb_dim', type=int, default=200)
 args = parser.parse_args()
 ##### Set params #####
 
@@ -28,19 +30,40 @@ max_len_padding = 24
 # If we do not want to run the model again.
 reuse_old_runs = False
 reprocess_data = True
-
+use_gaydhanis_data = True
+gaydhani_pre = True
 use_validation = True
 n_epochs = 10
 train_fraction = 0.6
 validation_fraction = 0.2
 test_fraction = 1 - train_fraction - validation_fraction
 
+use_pretrained_vecs = args.use_pretrained_vecs
+if use_pretrained_vecs == True:
+    """If we use pretrained vectors, we must:
+    - not use stemming in preprocessing.
+    """
+    print("Using preprocessed vectors")
+    remove_stop_words = True
+    stem = False
+else:
+    remove_stop_words = True
+    stem = True
 
+use_early_stopping = True
 
 #### Model params ####
 activation_function = args.activationfunction
 
-filters = 50
+
+
+# Embedding dimension. Should be 200.
+emb_dim = args.emb_dim
+
+if emb_dim >= 100:
+    filters = 50
+else:
+    filters = 25
 
 if args.regval != None:
     l2_reg = args.regval
@@ -51,8 +74,35 @@ else:
 
 if reprocess_data == True:
     print("Reprocessing data!")
-    raw_data = pd.read_csv("data/data_merged.csv", sep = "\t")
-    data = pre_process_data(raw_data)
+    if use_gaydhanis_data == False:
+        raw_data = pd.read_csv("data/data_merged.csv", sep = "\t")
+    else:
+        train = pd.read_csv("../Data/Gaydhani/train.csv", sep = ",")
+
+
+        test = pd.read_csv("../Data/Gaydhani/test.csv", sep = ",")
+        # Drop the duplicates in the test set
+        test = test.drop_duplicates()
+        # Make a left join to get everything that is in training and test set
+        test = test.merge(train.drop_duplicates(),how='left',left_on='text',right_on='text')
+        # All the ones with NaN values are the only ones existing ONLY in the test set. Drop the rest.
+        test = test[test.output_class_y.notnull() == False]
+        test = test.drop(columns=['output_class_y'])
+        print(train)
+
+    if gaydhani_pre == False:
+        data, max_len_padding = pre_process_data(data = raw_data, remove_stop_words = remove_stop_words, stem = stem)
+    elif gaydhani_pre == True and use_gaydhanis_data == False:
+        print("Preprocessing just like Gaydhani")
+        data, max_len_padding = pre_process_data_gaydhani(data = raw_data)
+    else:
+        train.columns = ['bad_column','class', 'tweet_text']
+        train, max_len_padding1 = pre_process_data(data = train, remove_stop_words = True, stem = True)
+        test.columns = ['class', 'tweet_text', 'bad_column']
+        test, max_len_padding2 = pre_process_data(data = test, remove_stop_words = True, stem = True)
+
+        max_len_padding = max(max_len_padding1, max_len_padding2)
+
 else:
     print("Using preprocessed data!")
     data = pd.read_csv("data/data_processed.csv", sep = "\t")
@@ -60,13 +110,22 @@ else:
 
 
 # get the w2vec model
-w2vec_model, w_index, tokenizer = get_w2vec_model(data)
+if use_gaydhanis_data == False:
+    w2vec_model, w_index, tokenizer = get_w2vec_model(data, use_pretrained_vecs = use_pretrained_vecs, emb_dim = emb_dim)
+else:
+    w2vec_model, w_index, tokenizer = get_w2vec_model(train, use_pretrained_vecs = use_pretrained_vecs, emb_dim = emb_dim)
+#print(w2vec_model.wv)
 
-emb_dim = 150
 
 # Get the embedding layer
-if use_validation == False:
+if use_validation == False and use_gaydhanis_data == False:
     train, test = split_data(data)
+elif use_validation == False and use_gaydhanis_data == True:
+    print("Using the dataset that gaydhani has. ")
+elif use_validation == True and use_gaydhanis_data == True:
+    train, validation = split_data(train,train_test = True, partitioning = (5/7))
+    validation_feats = pad_sequences(tokenizer.texts_to_sequences(validation['tweets']), maxlen = max_len_padding)
+    validation_labels = keras.utils.to_categorical(np.asarray(validation['class']))
 else:
     train, validation, test = split_data(data, train_test = False, partitioning = (0.6,0.2))
     validation_feats = pad_sequences(tokenizer.texts_to_sequences(validation['tweets']), maxlen = max_len_padding)
@@ -87,14 +146,15 @@ for w, i in w_index.items():
     except KeyError:
         emb_matrix[i] = np.zeros(emb_dim) # If
 emb_layer = Embedding(vocab_size, emb_dim, weights=[emb_matrix], trainable=True)
-
+print("train_feats.shape is " + str(train_feats.shape))
 inputs = Input(shape=(train_feats.shape[1],))
 emb = emb_layer(inputs)
+print((train_feats.shape[1],emb_dim,1))
 rshape = Rshape((train_feats.shape[1],emb_dim,1))(emb)
 
-conv0 = Conv2D(filters, (3, emb_dim), activation = 'relu',kernel_regularizer=regularizers.l2(l2_reg))(rshape)
-conv1 = Conv2D(filters, (4, emb_dim), activation = 'relu',kernel_regularizer=regularizers.l2(l2_reg))(rshape)
-conv2 = Conv2D(filters, (5, emb_dim), activation = 'relu',kernel_regularizer=regularizers.l2(l2_reg))(rshape)
+conv0 = Conv2D(filters, (3, emb_dim), activation = activation_function,kernel_regularizer=regularizers.l2(l2_reg))(rshape)
+conv1 = Conv2D(filters, (4, emb_dim), activation = activation_function,kernel_regularizer=regularizers.l2(l2_reg))(rshape)
+conv2 = Conv2D(filters, (5, emb_dim), activation = activation_function,kernel_regularizer=regularizers.l2(l2_reg))(rshape)
 
 m_pool0 = MaxPooling2D((train_feats.shape[1] - 3 + 1,1), strides=(1,1))(conv0)
 m_pool1 = MaxPooling2D((train_feats.shape[1] - 4 + 1,1), strides=(1,1))(conv1)
@@ -102,7 +162,7 @@ m_pool2 = MaxPooling2D((train_feats.shape[1] - 5 + 1,1), strides=(1,1))(conv2)
 
 tensor_merged = keras.layers.concatenate([m_pool0, m_pool1, m_pool2], axis=1)
 flat = Flatten()(tensor_merged)
-rshape = Rshape((150,))(flat)
+rshape = Rshape((3*filters,))(flat) # three times the number of filters
 d_out = Dropout(0.5)(flat)
 output = Dense(units=3, activation='softmax',kernel_regularizer=regularizers.l2(0.01))(d_out)
 model = Model(inputs, output)
@@ -110,17 +170,14 @@ model.compile(loss='categorical_crossentropy',optimizer=keras.optimizers.Adam(),
 print(test_feats.shape)
 print(labels_test.shape)
 
-if reuse_old_runs == False:
-    # TO RUN A NEW, USE THE TWO LINES BELOW. OTHERWISE COMMENT IT
-    if use_validation == False:
-        model.fit(train_feats,labels_train, epochs = n_epochs)
-    else:
-        model.fit(train_feats,labels_train, epochs = n_epochs, validation_data=(validation_feats, validation_labels))
-    preds = model.predict(test_feats)
-    np.savetxt("predictions_test.csv", preds, delimiter=",")
+
+# TO RUN A NEW, USE THE TWO LINES BELOW. OTHERWISE COMMENT IT
+if use_validation == False:
+    model.fit(train_feats,labels_train, epochs = n_epochs)
 else:
-    # TO REUSE OLD RUNS, USE THE LINE BELOW. OTHERWISE COMMENT IT
-    preds = pd.read_csv("predictions_test.csv", sep=",", header=None)
+    model.fit(train_feats,labels_train, epochs = n_epochs, validation_data=(validation_feats, validation_labels))
+preds = model.predict(test_feats)
+
 
 preds = np.apply_along_axis(np.argmax,1, preds)
 true = np.apply_along_axis(np.argmax,1,np.asarray(labels_test))
@@ -168,13 +225,17 @@ with open("results/results.txt", "a") as res:
     res.write("Result obtained on " + str(datetime.datetime.now()) + "\n \n")
     res.write("PARAMETERS SET TO \n")
     res.write("Padding: \t" + str(max_len_padding) + "\n ")
+    res.write("Using pretrained vectors: \t" + str(use_pretrained_vecs) + "\n ")
+    res.write("Stem: \t" + str(stem) + "\n ")
+    res.write("Remove stopwords: \t" + str(remove_stop_words) + "\n ")
     res.write("Activation function: \t"+ str(activation_function)+"\n ")
     res.write("use_validation: \t" + str(use_validation) + "\n ")
     res.write("n_epochs: \t" + str(n_epochs)+"\n")
     res.write("train_fraction \t"+ str(train_fraction)+"\n")
     res.write("validation_fraction: \t" + str(validation_fraction)+"\n")
     res.write("l2_reg: \t" + str(l2_reg)+"\n")
-    res.write("filters: \t" + str(filters)+"\n \n")
+    res.write("filters: \t" + str(filters)+"\n")
+    res.write("Nr dims: \t" + str(emb_dim) + "\n \n ")
     res.write("------RESULTS------"+"\n \n")
     res.write("Confusion matrix : \n"+str(conf_m)+"\n")
     res.write("Precisions : \n" + str(precisions) + "\n")

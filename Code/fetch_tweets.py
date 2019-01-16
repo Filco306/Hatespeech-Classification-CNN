@@ -4,7 +4,6 @@
 from __future__ import print_function
 import getopt
 import logging
-#import os
 import sys
 from subprocess import call
 import pandas as pd
@@ -38,7 +37,8 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
-# Cred: chrisinmtown@StackOverflow. Copied from https://stackoverflow.com/questions/28384588/twitter-api-get-tweets-with-specific-id
+# Credits to: chrisinmtown@StackOverflow. Copied from https://stackoverflow.com/questions/28384588/twitter-api-get-tweets-with-specific-id
+# Slightly modified to suit my own purpose
 def get_tweet_list(twapi, idlist):
     '''
     Invokes bulk lookup method.
@@ -54,7 +54,7 @@ def get_tweet_list(twapi, idlist):
             print('%s,%s' % (tweet.id, tweet.text.encode('UTF-8')))
             yield tweet.id, tweet.text.encode('UTF-8')
 
-# Cred: chrisinmtown@StackOverflow. Copied from https://stackoverflow.com/questions/28384588/twitter-api-get-tweets-with-specific-id
+# Credits to: chrisinmtown@StackOverflow. Copied from https://stackoverflow.com/questions/28384588/twitter-api-get-tweets-with-specific-id
 # Slightly modified to suit my own purpose
 def get_tweets_bulk(twapi, id_list):
     '''

@@ -9,15 +9,15 @@ def get_tweets(clas, filename):
     for tweet in tweets:
         innocent_tweets.append((int(tweet['id_str']), clas, str(tweet['text'])))
     return innocent_tweets
-innocent_tweets = get_tweets(2, "data/share/neither.json")
-hate_speech_tweets = get_tweets(0, "data/share/racism.json")
+innocent_tweets = get_tweets(2, "../datashare/neither.json")
+hate_speech_tweets = get_tweets(0, "../datashare/racism.json")
 print("Number of racist tweets ")
 print(len(hate_speech_tweets))
-hate_speech_tweets_2 = get_tweets(0, "data/share/sexism.json")
+hate_speech_tweets_2 = get_tweets(0, "../datashare/sexism.json")
 all_data = innocent_tweets + hate_speech_tweets + hate_speech_tweets_2
 
 # Now we have all tweets. Now put them into a dataframe and write it to a csv.
 import pandas as pd
 
 data = pd.DataFrame(all_data, columns = ["id", "class", "tweet_text"])
-data.to_csv("data/tweets_third_dataset.csv", sep='\t', encoding='utf-8')
+data.to_csv("../datatweets_third_dataset.csv", sep='\t', encoding='utf-8')

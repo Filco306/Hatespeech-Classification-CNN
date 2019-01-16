@@ -1,9 +1,9 @@
 import numpy as np
 import pandas as pd
 pd.set_option('display.expand_frame_repr', False)
-data1 = pd.read_csv("../data/twitter_hate_speech.csv")
-data2 = pd.read_csv("../data/twitter_hate_speech2.csv")
-data3 = pd.read_csv("../data/tweets_third_dataset.csv", sep="\t")
+data1 = pd.read_csv("data/twitter_hate_speech.csv")
+data2 = pd.read_csv("data/twitter_hate_speech2.csv")
+data3 = pd.read_csv("data/tweets_third_dataset.csv", sep="\t")
 print(data3[data3['id'].isin(data3['id'].value_counts()[data3['id'].value_counts()>2].index)])
 data3 = data3.drop_duplicates(subset='id',keep=False)
 print(data3['class'].value_counts())
@@ -27,14 +27,12 @@ data1Classes = ["The tweet contains hate speech", "The tweet uses offensive lang
 labels = []
 for a in data1['does_this_tweet_contain_hate_speech']:
     labels.append(data1Classes.index(a))
-#print(labels)
+
 labels = np.asarray(labels)
 
 
 data1['class'] = labels
 print(data1.head())
-#print()
-
 
 col_names = ['class','tweet_text']
 data = pd.DataFrame(columns=col_names)
@@ -45,10 +43,9 @@ data3_nrows = data3.shape[0]
 print(data1_nrows)
 print(data2_nrows)
 print(data3_nrows)
-"""df = pd.DataFrame(columns=['A'])
-for i in range(5):
-     df = df.append({'A': i}, ignore_index=True)
-df"""
+print(data1['class'].value_counts())
+print(data2['class'].value_counts())
+print(data3['class'].value_counts())
 
 for i in range(data1_nrows):
     data = data.append({'class': data1.iloc[[i]]['class'].values[0],'tweet_text':data1.iloc[[i]]['tweet_text'].values[0]},ignore_index=True)
@@ -69,13 +66,9 @@ for i in range(data3_nrows):
         print(i)
 print(data.head())
 print(data.shape)
-data.to_csv("../data/data_merged.csv", sep='\t', encoding='utf-8')
+data.to_csv("data/data_merged.csv", sep='\t', encoding='utf-8')
 # When data is merged to 1 frame, start preprocessing!
 
-"""
-# Use tf-idf on the words.
-from sklearn.feature_extraction.text import TfidfVectorizer
-from scipy import spatial"""
 print(data1['class'].value_counts())
 print(data2['class'].value_counts())
 print(data3['class'].value_counts())
