@@ -1,0 +1,255 @@
+\documentclass[twocolumn]{article}
+%\documentclass{article}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{marvosym}
+\makeatletter
+\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
+\makeatother
+\graphicspath{ {Pics/}}
+\title{TDDE16 Project - Disproving logistic regression's efficiency for hate speech classification, and comparing with CNN}
+\author{Filip Cornell, filco306}
+
+\begin{document}
+\maketitle
+\abstract{This article covers the topic of tweet classification, with the intent of classifying different tweets into either being offensive, using offensive language or not being offensive at all. For this, a convolutional neural network is applied. }
+\section{Introduction}
+
+% Introduce topic, make interesting to the reader
+The internet's ability to permit everyone to speak their mind and share their knowledge opens up tremendous possibility. The amount of information possible to consume has never been greater for the ordinary person, and it has had a great impact on everyone's lives since it came to be. Social medias such as Facebook, Twitter and Instagram allow each and everyone to live a social life not only in real life, but also online. The internet is thus for most people an enriching experience, and some might even argue that it is the greatest invention of all time \cite{sleeve}. 
+
+However, not everything on the internet can be considered completely positive. The possibility to speak freely also opens up for the less charming sides of the internet; harassment, hate speech and cyberbullying. This is a rising problem, and the possibility to control this by manually checking harassing posts is not only becoming increasingly difficult, but rather practically infeasible. As of November 2018, more than 500,000 posts were posted each minute on Facebook, yielding a massive amount of information \cite{zeph}. If only 1 \% of these were to be reported as offensive, this would lead to Facebook's employees having to manually check more than 2.6 billion posts each year - a huge cost. This has been a increasingly pressing issue, and the German government even threatened Facebook to fine \EUR{ 50 million} annually if they would not take serious measures tackle the issue of removing hateful and offensive posts \cite{EThomasson}. Manual reviews' inefficiency is not only problematic in terms of resources, but also speed, as the posts are left online until removed, causing the damage it was intended for. Detecting and identifying offensive and hateful posts on social media in a quick, automatic and efficient way is thus a pressing issue, and a lot of work has been done previously within the area. In this paper, we investigate how some models previously tried can be combined in a new way and see what results this might bring. The intent is to use a Convolutional Neural Network (CNN) together with the \verb|word2vec| embedding and compare this to the performance of models in previous work. Although several papers before has used CNNs together with \verb|word2vec| to classify tweets, few seem to so far have used \verb|word2vec| as word embeddings (although it has been done for sentences before \cite{KimYoon}), but rather GloVe \cite{2018HateSD, DLNN, Gambck2017}. The paper starts with an introduction to the theory of \verb|word2vec| and CNNs, followed by what previously has been done on tweet classification. This is followed by the method explained, and a more thorough explanation of the specific model used in this task. The results are then presented, followed by a discussion and conclusion. 
+
+\section{Theory}
+
+In this section, the theory behind the models and tools used are presented, as well as previous work within the field. 
+
+\subsection{Word2vec}
+
+In order to train a neural network to be used for natural language processing (NLP), the text must be mapped from text to vectors using a word embedding \cite{Lec}. One technique to do this is \verb|word2vec|, which uses Skip-gram and Continuous Bag-of-words (CBOW) \cite{Lec}. 
+
+The Skip-gram model will during training, given a sequence of words $w_{1:T}$, maximize the average log probability (\ref{eq:log_prob}). \cite{Mikolov}
+
+\begin{equation}
+\label{eq:log_prob}
+\frac{1}{T} \sum_{t=1}^T \sum_{-c \leq j \leq c, j \neq 0} log p(w_{t+j}|w_t)
+\end{equation}
+
+The word probabilities $p(w_{t+j}|w_t)$ will be computed and trained by a neural network, where the probabilities are calculated with the softmax function (\ref{eq:soft_max_w2vec})
+
+\begin{equation}
+\label{eq:soft_max_w2vec}
+p(w_O|w_I) = \frac{exp({\nu_{w_O}'}^T\nu_{w_I})}{\sum_{w=1}^Wexp({\nu_{w}'}^T\nu_{w_I})}
+\end{equation}
+
+$\nu_w$ and $\nu_w$ are the "input" and "output" vectors representing w.
+
+% FROM ANOTHER PAPER: In the CBOW architecture, the model predicts the current word from a window of surrounding context words. In the skip-gram model, the context words are predicted using the current word.
+
+\subsection{Convolutional Neural Network (CNN)}
+
+A popular approach when analyzing and classifying text data is to use a CNN, originally mainly used in image and sound recognition \cite{2018HateSD}. Although CNN:s can be formed in many ways, it has a basic, intuitive structure. First, of all, they are not fully connected, but rather has one neurone's output going to only one other neurone in the next layer \cite{wildml}. The first layer is a layer with convolutional filters. On the matrix inputted, a sliding window, also known as a kernel, feature detector or filter is applied. For each operation the sliding window multiplies each value in the sliding window with the original matrix and sums these values up, creating a new output matrix, also called a feature map \cite{wildml}. These are sent to a pooling layer, that reduces the size of these outputs by summarizing subregions of the feature map. There are several methods of doing this; one can take the maximum value (max-pooling) or the average value of the sub-region \cite{dumoulin2016guide}. This basic structure can be used in several layers, along with other types of layers, but these two layers constitute the basic components of a CNN. If the mission of the model is to classify the input, the last layer usually consists of one neurone with the SoftMax function as activation function to classify into the different classes \cite{Lec}. The SoftMax function can be written as 
+
+% Use doc2vec? https://radimrehurek.com/gensim/models/doc2vec.html
+
+\begin{equation}
+softmax(z)[i] = \frac{e^{z_i}}{\sum_{k=1}^K e^{z_k}} \forall k \in K
+\end{equation}
+
+where $z_i$ denotes the output of the second last layer, and k denotes class $K$.
+
+When using a CNN, the input size of the features is fixed. The whole sentence (in the NLP case) is thus inputted as a 2D-matrix into the neural network, with the words as rows, and their features as columns. Since, in practice, sentences can differ in length, one must pad the sentences with values to make them fit into the network. In image classification, the squares sent in usually represent images or compressed such \cite{2018HateSD} . 
+\begin{figure}
+  \includegraphics[width=\linewidth]{CNNGAMBACK}
+  \caption{The layout of the CNN as proposed by Gamb\"ack \cite{Gambck2017}}.
+  \label{fig:boat1}
+\end{figure} 
+
+Two common activation functions in the layers inbetween are the tanh function (equation \ref{eq:tanh}) and Rectified Linear Units (ReLU) function (equation \ref{eq:ReLU}). The tanh function, the previous norm, has been shown to have disadvantages compared to the ReLU function in terms of convergence, as the gradient does not saturate as quick. It has been shown that ReLU can converge up to six times faster than tanh \cite{Krizhevsky}.  
+
+\begin{equation}
+\label{eq:tanh}
+f(x) = \frac{1}{1 + e^{-x}}
+\end{equation}
+
+\begin{equation}
+\label{eq:ReLU}
+f(x) = max(0,x)
+\end{equation}
+
+
+\subsection{Related work}
+
+Many different approaches have been tried in the field of identifying and classifying hateful speech on the internet before. The first research papers on the topic were published as early as 1997 \cite{smokey}, in which a tree-based classifier managed to reach an accuracy of 88.2 \%. The data set was based 720 manually added notes on web page posts from then popular web pages. \cite{smokey} Over the years, there has been a clear trend of classifying posts on the most popular social medias, such as Twitter and Facebook. In 2016, Waseem and Hovy \cite{Waseem2016HatefulSO} apply logistic regression combined with character n-gram, achieving an F1-score of 74 \%. They are also able to extract the most indicative n-gram features in the set, indicating that features inside "muslim" or "islam" are the most indicative features for racism, while \textit{"bitc"}, \textit{"sex"} or \textit{"xist"} indicate sexual harrassment. 
+
+On the same dataset as Waseem and Hovy \cite{Waseem2016HatefulSO}, Gamb\"ack et al. \cite{Gambck2017} applies a Convolutional Neural Network (CNN) to a set of tweets. To obtain the feature embeddings for the model, \verb|word2vec| and character n-grams were used, while word embeddings were obtained by using \verb|word2vec| and random word vectors. In the neural network, a SoftMax layer calculated the class probability. In between, a pooling layer is utilized to convert each tweet into a vector of fixed length. This pooling layer is followed by a max-pooling layer, used to capture the most important latent semantic factors in each tweet. The model resulted in a precision, at best, of 86 \% using random vectors, and an F-score of 78.29 \%, obtained through using character n-grams. 
+
+A. Gaydhani et al. (2018) \cite{gaydhani} uses an $n$-gram and TF-IDF approach, with $n$ ranging between 1 to 3. TF-IDF is used to be able to reduce the negative influence of tokens that are not really informative and appear very frequently. Each n-gram feature is then weighted in proportion to their TFIDF value. A final result showed results of an accuracy up to 95 \% with logistic regression, 93.4 \% for Na\"ive Bayes and 90.1 \% for SVMs after tunings of hyperparameters. It must however be noted, that oversampling was performed on the dataset to balance out the dataset, which might create a bias towards the training data, and a possibility to overfit \cite{Weiss2007}. The results here might thus not be as generalizable as the authors might had desired. Also, the test set is also oversampled, yielding the risk of an unjust accuracy. 
+
+Badjatiya P. et al. \cite{DLNN} investigates the possibility to apply three different neural network architectures on classifying tweets; CNN, Long Short-Term Memory (LSTM) and FastText. On these, word embeddings with GloVe- or random beddings are applied. \cite{DLNN} On these, gradient boosting (GBDT) is also applied as learning method. The best result is achieved with LSTM, random embeddings and GBDT, achieving an F-score of 93 \%. The GBDT makes a significance difference, seeing that the F-score of LSTM and random embeddings achieves an F-score of 84.8 \%. 
+
+\section{Data}
+
+To make this comparable to some previous work done, the same public datasets are used. With this, we can compare this implementation to the performance of logistic regression, SVM:s and a Na\"ive Bayes implementations \cite{gaydhani}. The first two datasets are fetched from \verb|data.world|, where the tweets has been determined as offensive, hate speech or not offensive by different users.\footnote{\label{dataset1}\url{https://data.world/crowdflower/hate-speech-identification}} \footnote{\label{dataset2}\url{https://data.world/ml-research/automated-hate-speech-detection-data}} The second dataset\footnote{\label{dataset3} Available at \url{https://github.com/ZeerakW/hatespeech}} is a dataset used in three previous works \cite{gaydhani, Gambck2017,Waseem2016HatefulSO}, where the data is classified as hateful or not, but rather divided into categories 
+
+Investigating the data further, the two data sets have a skewedness towards neither offensive nor hateful and offensive tweets, as seen in Table \ref{tab:labeldist}. 
+
+
+\begin{table}[h]
+\caption{Distribution of types of tweets in dataset1}
+\label{tab:labeldist}
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Class/Dataset} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{$\sum$} \\ \hline
+\textbf{Normal}        & 7274       & 4163       & 11501       & 22938           \\ \hline
+\textbf{Offensive}     & 4836       & 19190      & 0          & 24026           \\ \hline
+\textbf{Hate speech}   & 2399       & 1430       & 5290       & 9119            \\ \hline
+\textbf{Total}         & 14509      & 24783      & 16791      & 56083           \\ \hline
+\end{tabular}
+\end{table}
+%\begin{table}[h]
+
+%\begin{tabular}{|l|l|}
+%\hline
+%\textbf{Class}                            & \textbf{Frequency in merged dataset} & \textbf{Frequency in merged dataset} \\ \hline
+%Neither & 11437         & 11437                            \\ \hline
+%Offensive    & 24026        & 24026                        \\ \hline
+%Hate speech                       & 3829           & 3829                        \\ \hline
+%\end{tabular}
+%\end{table}
+
+The first dataset contains 20 columns. However, only 2 are significantly interesting for the analysis. 
+\begin{itemize}
+\item \verb|does_this_contain_hate_speech| is classified into "The tweet uses offensive language but not hate speech", "The tweet contains hate speech"
+\item \verb|tweet_text| contains the actual tweet.
+\end{itemize}
+ 
+The other columns display information such as the confidence of the labelling, based on the judgements from the manual labellers who has labelled the data, as some might have labelled some tweets differently. These would be interesting to incorporate in future work, but is left in this paper for simplification. Instead, the column \verb|does_this_contain_hate_speech| 
+
+The second dataset contains only 7 columns, with two columns used for actual analysis. 
+
+\begin{itemize}
+\item \verb|class| - the class as judged by majority of users. 
+\item \verb|tweet| - a string containing the actual tweet to be analyzed. 
+\end{itemize}
+
+The data has been labelled by users on CrowdFlower, who has made judgments on whether the tweets are offensive, contains hate speech or neither. Other columns includes information such as number of votes on each class, tweet id and such. 
+
+The third dataset only contains two columns; \verb|class| and \verb|id|, where class refers to "racism" or "sexism", indicating hate speech, or "neither?, indicating a normal tweet. Just like Gaydhani A. et al \cite{gaydhani}, we consider both "racism" and "sexism" to be hatespeech, and "neither" to be a normal tweet. It is important to note that not all tweets from this dataset were possible to be fetched. This was due to two reasons. First of all, some tweets did not seem to remain on Twitter, as they were not fetched. Secondly, some tweets were labelled as both "neither" and either "sexism" or racism in the dataset, making it impractical to use these as neither. These were thus dropped, and out of the 16907 original tweets, only 11155 were retrieved and used. For example, out of the 1970 tweets marked as racist, only 12 remained fetchable. It is probable that these have been removed due to its racist nature. 
+
+\subsection{Preprocessing}
+
+First, the datasets are merged. The following preprocessings are then made (in given order). 
+
+\begin{enumerate}
+\item All characters are set to lowercase. 
+%\item All usernames in the tweets are changed to "U" to mark a username. A capital U is chosen to ensure that user is recognized that another user is mentioned. This is from the author's personal belief that other users might be mentioned in offensive tweets, but not the ones containing hate speech necessarily, and it thus might have useful information.
+\item All escaped characters, such as "\&gt" and "\&lt" are removed. 
+\item All url:s are removed. 
+\item The words are stemmed using the Porter Stemmer from the package \verb|nltk|.
+\item Some common words are changed, such as "im" to "i'm", "lil" to "little" and so on. 
+\item All stopwords are removed.
+\item All non alpha-numeric character are removed. 
+\end{enumerate}
+
+Note that step 4, the stemming, will not be performed when using pre-trained word-embeddings. 
+
+\section{Method}
+
+To briefly describe the method for the neural network, each tweet is converted to be represented as a matrix in numerical form using the word embedding \verb|word2vec| using the package \verb|gensim|. If a tweet is shorter than the most amount of words found in the set after preprocessing, padding is added to have the same dimensions of every tweet. The data is then split up using different seeds (a total of 10 seeds will be used) and then CNN is trained using 80 \% of the data in X epochs, and is then tested on the remaining 20 \% (the test set). This is repeated on a number of seeds. The metrics used to measure the performance are then calculated based on the confusion matrix retrieved from the test sets, and the average of each metrics will be reported. 
+
+In order to perform a comparison with A. Gaydhani et al. \cite{gaydhani} and ensure that the comparison is fair, we also create their best performing model; logistic regression with a regularizer C set to 100, solved with \verb|liblinear|, using the package \verb|sklearn|. This is to be able to validate the comparison and ensure that the comparison actually is fair. Since A. Gaydhani et al. used oversampling, the logistic regression model and the CNN-model will be run both with balanced and imbalanced data and compared. We will then also be able to conclude whether the oversampling introduces a bias. 
+
+It is also worth mentioning that the oversampling made by A. Gaydhani et al. many times includes the same tweets in both the training and the test set. This renders the work factually useless, and we will thus try out both methods when reducing the test set to only unique values, to yield a balanced training set but imbalanced test set, thus testing the oversampled model on a dataset similar to real life. This resulted however in only 4596 (out of the 21k test set as before) tweets in the test set and 35982 in the training set, which is a partition of roughly 89\%/11\%.
+
+\subsection{Word embedding}
+
+The word embedding \verb|word2vec| is applied to the whole dataset. We use two embeddings: One with pre-trained word vectors, trained on more than 2B tweets\footnote{Available at \url{https://nlp.stanford.edu/projects/glove/}}, and one which we train on the entire dataset. 
+
+The pre-trained vectors have a dimension of X. When these are used, words will not be stemmed to match the words in the pre-trained vectors. Also, we will try both removing and keeping stopwords to see whether semantics are lost. 
+
+We test dimension of 25, 50, 100 and 200 on the word vectors and set a minimum count of 2 for a word to be included; in other words, if a word does not exist at least twice, we will not include it as a vector, and it will be considered non-informative and the corresponding vector will be set to a 0-vector. This will yield loss of information, and one might argue that \verb|char2vec| might be useful for tweets as the number of characters is limited in a tweet to 140 characters (although it is discussed whether it is about to be doubled soon \cite{CNN}). 
+
+\subsection{CNN}
+
+The CNN used in this paper is quite simple and similar to the one used in Gamb\"ack et al. \cite{Gambck2017}, although slight modifications have been made. As input, we will have an $NxM$ matrix with the word embeddings, where $N$ is the maximum amount of words contained in a tweet, and $M$ is the number of dimensions for the embedded vectors. The vectors will pass into three convolutional 2-dimensional layers with convolutions of 3, 4 and 5 respectively. The output of these ones, are passed on to its respective max-pooling layer, which then passes it on the last classification layer with only one neurone, the Softmax layer. In figure \ref{fig:myNN}, the architecture for the network can be seen. 
+
+\begin{figure}
+  \includegraphics[width=\linewidth]{NN-architecture}
+  \caption{The network architecture used in this paper.}
+  \label{fig:myNN}
+\end{figure} 
+
+During training, gradient descent with the ADAM algorithm is used, which has shown to be computationally efficient and suitable for problems with large datasets \cite{Kingma2014AdamAM}. It combines the advantages of the 
+
+\subsection{Metrics}
+
+To make this comparable to previous works \cite{Gambck2017, DLNN, gaydhani}, the same metrics used in those will be used here. That is, the precision, recall and the F1-score, three measures commonly used in classification problems. As we have three classes here, it should be clarified that the measures are calculated as follows. 
+
+\begin{equation}
+P_k = \frac{M_{ii}}{\sum_j M_{j,i}}
+\end{equation}
+\begin{equation}
+R_k = \frac{M_{ii}}{\sum_j M_{i,j}}
+\end{equation}
+\begin{equation}
+F1_k = \frac{2\cdot P_k \cdot R_k}{P_k + R_k}
+\end{equation}
+
+The average scores are then calculated by multiplying the classes' scores with their corresponding percentual representation in the test set. 
+\section{Results}
+
+
+The confusion matrix can be seen in table  \ref{tab:conf_m_test}. Table \ref{tab:explan}
+
+\begin{table}[h]
+\caption{Explanation of classes}
+\label{tab:explan}
+\begin{tabular}{|l|l|}
+\hline
+ \textbf{Type of tweet}                                     & \textbf{Class} \\ \hline
+\textbf{Hate speech}                 & 0               \\ \hline
+\textbf{Offensive} & 1               \\ \hline
+\textbf{Neither}                   & 2               \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\caption{Confusion matrix of result on test set. }
+\label{tab:conf_m_test}
+\begin{tabular}{|l|l|l|l|}
+\hline
+      Class           & \textbf{0} & \textbf{1} & \textbf{2} \\ \hline
+\textbf{0}     & \textbf{0.811}  & 0.052              & 0.065               \\ \hline
+\textbf{1}  & 0.092           & \textbf{0.865}     & 0.137               \\ \hline
+\textbf{2} & 0.097           & 0.082              & \textbf{0.800}      \\ \hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\label{tab:top_results}
+
+%\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|l|l|l|}
+\hline
+\textbf{Model}                                                                     & \textbf{Acc} & \textbf{Prec} & \textbf{Recall} & \textbf{F-score} \\ \hline
+\textbf{Log. regr. \cite{gaydhani}} &            0.95               &         0.96           &       0.96          &        0.96           \\ \hline
+\textbf{Log. regr. remade*}                   &            0.83               &         0.77           &         0.75        &      0.76             \\ \hline
+\textbf{CNN pretrained vectors}                                       &                           &                    &                 &                   \\ \hline
+\textbf{CNN, not pretrained}                                      &                           &                    &                 &                   \\ \hline
+\end{tabular}%}
+\end{table}
+
+\section{Discussion}
+
+Although the overall accuracy achieved is comparable to previous works, it does not seem to match state-of-the-art. On overall accuracy, it does perform better. The TF-IDF approach tried out 
+
+As we can see in the accuracy matrix, few hateful or offensive tweets are classified as normal, but rather as offensive or hateful. However, the distinguishing between hateful and offensive seems a difficult task, and an accuracy of only 60 \% is achieved for tweets containing hate speech. This might be due to a few reasons. First of all, the data set is unbalanced, with significantly fewer data points for hate speech tweets than the other two classes. Secondly, the manual labelling cannot be considered completely accurate. Some loss of accuracy might also be caused by the preprocessing stages causing loss of semantics. The preprocessing is also slightly different from previous works. However, trying to reproduce the results of the work of A. Gaydhani's et al. \cite{gaydhani} did not yield the same results, but rather gave worse results than my model. 
+
+\section{Conclusion}
+
+\section{References}
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}

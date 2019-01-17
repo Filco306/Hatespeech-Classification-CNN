@@ -12,6 +12,7 @@ preprocess = True
 parser = argparse.ArgumentParser(description='Input for the model.')
 
 parser.add_argument('-preprocess', type=str2bool, default='False')
+args = parser.parse_args()
 preprocess_as_gaydhani = args.preprocess
 
 if preprocess == False:

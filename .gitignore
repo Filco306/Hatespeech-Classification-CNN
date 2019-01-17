@@ -1,6 +1,5 @@
 Code/data_handling/set_twitter_api_keys.py
 Code/data_handling/set_up_twitter_env_vars.sh
-*.tex
 *.log
 *.zip
 Pics/
