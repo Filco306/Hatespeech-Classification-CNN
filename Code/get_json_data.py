@@ -1,6 +1,5 @@
 import json
 
-
 def get_tweets(clas, filename):
     tweets = []
     for line in open(filename, "r"):

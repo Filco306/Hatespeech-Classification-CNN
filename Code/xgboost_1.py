@@ -71,7 +71,6 @@ train_feats = pad_sequences(tokenizer.texts_to_sequences(train['tweets']), maxle
 test_feats = pad_sequences(tokenizer.texts_to_sequences(test['tweets']), maxlen = max_len_padding)
 labels_train = np.asarray(train['class'])
 labels_test = np.asarray(test['class'])
-
 vocab_size = len(w_index)+1
 emb_matrix = np.zeros((vocab_size,emb_dim))
 for w, i in w_index.items():
@@ -80,7 +79,6 @@ for w, i in w_index.items():
         emb_matrix[i] = emb_vec
     except KeyError:
         emb_matrix[i] = np.zeros(emb_dim) # If
-
 
 model = XGBClassifier()
 model.fit(train_feats, labels_train)

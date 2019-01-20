@@ -1,12 +1,10 @@
 #!/bin/bash
-
 pre_process_data_gaydhani=("True" "False")
 
 for pre in "${pre_process_data_gaydhani[@]}"
 do
   python logistic_regression.py -preprocess $pre
 done
-
 
 reg_vals=(0.1 0.001 0.01 1)
 act_funcs=("relu")

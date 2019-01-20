@@ -4,16 +4,13 @@ import pandas as pd
 import argparse
 from xgboost import XGBClassifier
 preprocess = True
-
 parser = argparse.ArgumentParser(description='Input for the model.')
-
 parser.add_argument('-preprocess', type=str2bool, default='False')
 args = parser.parse_args()
 if preprocess == False:
     data = pd.read_csv("data/data_processed.csv", sep = "\t")
 else:
     data, max_len_padding = pre_process_data(data = pd.read_csv("data/data_merged.csv", sep = "\t"))
-
 # Now use the data for a TF-IDF-based approach and n-gram approach.
 
 from sklearn.feature_extraction.text import TfidfVectorizer

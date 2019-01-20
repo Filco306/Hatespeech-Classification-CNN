@@ -8,6 +8,7 @@ from gensim.models.keyedvectors import KeyedVectors
 from gensim.models import Word2Vec
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import confusion_matrix
+import datetime
 
 # Preprocess the data.
 def pre_process_data(data, remove_stop_words = True, stem = True, include_mentions = False):
@@ -15,7 +16,6 @@ def pre_process_data(data, remove_stop_words = True, stem = True, include_mentio
     print("stem: "+str(stem))
     data['tweet_text'] = data['tweet_text'].str.lower() # Make to lowercase.
     # Remove all usernames!
-
     if include_mentions == True:
         data.tweet_text.replace(r'@(\S+)\s?', ' U ', regex=True, inplace=True)
     else:
@@ -25,9 +25,7 @@ def pre_process_data(data, remove_stop_words = True, stem = True, include_mentio
     data.tweet_text.replace(r'[&#]{2}[0-9]{4,6}', ' ', regex=True, inplace=True) # Replace all emojis
     data.tweet_text.replace(r'http\S+', '', regex=True, inplace=True) # Remove all urls
     data.tweet_text.replace(r'www.\S+', '', regex=True, inplace=True) # Remove all urls
-
     max_amt_words = 0
-
     if remove_stop_words == True and stem == True:
         stop_words = set(stopwords.words('english'))
         tweets = []
@@ -42,7 +40,6 @@ def pre_process_data(data, remove_stop_words = True, stem = True, include_mentio
             tweets.append(words)
         data['tweets'] = tweets
     elif remove_stop_words == False and stem == True:
-
         ps = nltk.stem.PorterStemmer()
         for tweet in data['tweet_text']:
             words = tweet.split(" ")
@@ -56,7 +53,6 @@ def pre_process_data(data, remove_stop_words = True, stem = True, include_mentio
     elif remove_stop_words == True and stem == False:
         stop_words = set(stopwords.words('english'))
         tweets = []
-
         for tweet in data['tweet_text']:
             words = tweet.split(" ")
             if max_amt_words < len(words):
@@ -95,7 +91,6 @@ def get_w2vec_model(data, use_pretrained_vecs = False, emb_dim = 200):
             min_count=2, # We will only include them if they occur twice or more.
             workers=10)
         w2vec_model.train(tweets, total_examples=len(tweets), epochs = 10)
-
     else: # TODO: Use glove tweet training. Then we must assume no stemming
         print("Using glove vectors")
         w2vec_model = KeyedVectors.load_word2vec_format("glove.twitter.27B/glove-twitter-"+str(emb_dim)+".txt", binary=False)
@@ -158,15 +153,11 @@ def print_results(true,preds, file_name):
 
     # Get the normalized confusion matrx
     print(np.apply_along_axis(normalize_conf_m, 0, conf_m))
-
-
     class_weights = np.array(np.divide(true.value_counts(),np.sum(true.value_counts())))
     precision_overall = np.sum(np.multiply(precisions, class_weights))
     recall_overall = np.sum(np.multiply(recalls, class_weights))
     F1_overall = np.divide(np.multiply(np.multiply(precision_overall, recall_overall),2), np.add(precision_overall, recall_overall))
 
-
-    import datetime
     with open(file_name, "a") as res:
         res.write("Result obtained on " + str(datetime.datetime.now()) + "\n \n")
         res.write("------RESULTS------"+"\n \n")

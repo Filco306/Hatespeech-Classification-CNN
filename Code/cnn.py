@@ -100,7 +100,6 @@ emb_layer = Embedding(vocab_length, emb_dim, weights=[emb_matrix], trainable=Tru
 print("train_feats.shape is " + str(train_feats.shape))
 inputs = Input(shape=(train_feats.shape[1],))
 emb = emb_layer(inputs)
-print((train_feats.shape[1],emb_dim,1))
 
 # Here begins the network architecture. Do note that this is the same architecture used by Yoon Kim (2014, see paper)
 # Paper is available at https://www.aclweb.org/anthology/D14-1181
@@ -182,12 +181,10 @@ print(np.mean(recalls))
 # Get the normalized confusion matrx
 print(np.apply_along_axis(normalize_conf_m, 0, conf_m))
 
-
 class_weights = np.array(np.divide(test['class'].value_counts(),np.sum(test['class'].value_counts())))
 precision_overall = np.sum(np.multiply(precisions, class_weights))
 recall_overall = np.sum(np.multiply(recalls, class_weights))
 F1_overall = np.divide(np.multiply(np.multiply(precision_overall, recall_overall),2), np.add(precision_overall, recall_overall))
-
 
 import datetime
 with open("results/results.txt", "a") as res:

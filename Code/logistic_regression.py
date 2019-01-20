@@ -20,8 +20,6 @@ else:
 # Now use the data for a TF-IDF-based approach and n-gram approach.
 
 train, test = split_data(data)
-
-
 count_vect = CountVectorizer(ngram_range=(1, 3), lowercase=True)
 train_counts = count_vect.fit_transform(train['tweets'])
 

@@ -15,7 +15,6 @@ batch_size = 100
 tweets = pd.read_csv("../data/NAACL_SRW_2016.csv", header=None, sep=",")
 print(tweets[1].value_counts())
 
-
 print("starting")
 ids = list(tweets[0])
 call("./set_up_twitter_env_vars.sh")
