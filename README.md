@@ -3,7 +3,7 @@ Performing hatespeech classification with a Convulotional Neural Network model. 
 
 In order to run the project with the premade vectors from GloVe, you need to do the following:
 
-1. Download the
+1. Download the file containing the pretrained tweet vectors from https://nlp.stanford.edu/projects/glove/
 2. Unzip the file and convert the files containing the keyed vector to a correct format using the following terminal commands:
 python -m gensim.scripts.glove2word2vec --input [filename25d] --output glove-twitter-25.txt
 python -m gensim.scripts.glove2word2vec --input [filename50d] --output glove-twitter-50.txt
