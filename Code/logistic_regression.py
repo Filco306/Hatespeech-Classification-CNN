@@ -19,22 +19,20 @@ else:
 
 # Now use the data for a TF-IDF-based approach and n-gram approach.
 
-
-
 train, test = split_data(data)
 
 
 count_vect = CountVectorizer(ngram_range=(1, 3), lowercase=True)
-Xtrain_counts = count_vect.fit_transform(train['tweets'])
+train_counts = count_vect.fit_transform(train['tweets'])
 
 tf_transformer = TfidfTransformer(use_idf=True, smooth_idf=True, norm='l2', sublinear_tf=False)
-Xtrain_tfidf = tf_transformer.fit_transform(Xtrain_counts)
+train_feats = tf_transformer.fit_transform(train_counts)
 
 from sklearn.linear_model import LogisticRegression
 
 # Use the exact same logistic regression model as in previous works.
 log_reg = LogisticRegression(class_weight='balanced', solver='liblinear', C=100, penalty='l2', max_iter=100, multi_class='ovr')
-log_reg_fit = log_reg.fit(Xtrain_tfidf, train['class'])
+log_reg_fit = log_reg.fit(train_feats, train['class'])
 
 counts = count_vect.transform(test['tweets'])
 tfidf_test = tf_transformer.transform(counts)
