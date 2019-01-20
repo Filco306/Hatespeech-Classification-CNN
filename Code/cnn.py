@@ -161,7 +161,6 @@ def normalize_conf_m(col):
     return np.divide(col, np.sum(col))
 
 # Calculate precision
-# precisions:
 precisions = np.array([])
 recalls = np.array([])
 F1s = np.array([])

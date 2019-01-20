@@ -90,13 +90,10 @@ def get_w2vec_model(data, use_pretrained_vecs = False, emb_dim = 200):
     w_index = tokenizer.word_index
     vocab_size = len(w_index)+1
     if use_pretrained_vecs == False:
-        w2vec_model = Word2Vec( # Inspiration taken from tutorial: http://kavita-ganesan.com/gensim-word2vec-tutorial-starter-code/#.XCAQp89Ki1s
-            tweets,
-            size=emb_dim,
-            window=10,
+        # Inspiration taken from tutorial: http://kavita-ganesan.com/gensim-word2vec-tutorial-starter-code/#.XCAQp89Ki1s
+        w2vec_model = Word2Vec(tweets, size=emb_dim, window=10,
             min_count=2, # We will only include them if they occur twice or more.
-            workers=10
-        )
+            workers=10)
         w2vec_model.train(tweets, total_examples=len(tweets), epochs = 10)
 
     else: # TODO: Use glove tweet training. Then we must assume no stemming
@@ -116,6 +113,8 @@ def split_data(data, train_test = True, partitioning = 0.8, seed = 123):
         train, validation, test = np.split(data.sample(frac=1), [int(partitioning[0]*len(data)), int((partitioning[0] + partitioning[1])*len(data))])
         return train, validation, test
 
+# Created by Maxim@StackOverflow. All credits to him.
+# Can be found at https://stackoverflow.com/questions/15008758/parsing-boolean-values-with-argparse
 def str2bool(v):
     if v.lower() == "true":
         return True
