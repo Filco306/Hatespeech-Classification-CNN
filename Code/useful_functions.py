@@ -1,4 +1,4 @@
-##### Define functions #####
+##### Defining useful functions for the processing and such #####
 import numpy as np
 import pandas as pd
 import nltk # Prepare stopwords
@@ -7,9 +7,9 @@ from keras.preprocessing.text import Tokenizer
 from gensim.models.keyedvectors import KeyedVectors
 from gensim.models import Word2Vec
 from sklearn.model_selection import train_test_split
-from gaydhani_preprocessing import preprocess_gaydhani
+from sklearn.metrics import confusion_matrix
 
-# Preprocess the data. Default is similar preprocessing as to Gaydhani
+# Preprocess the data.
 def pre_process_data(data, remove_stop_words = True, stem = True, include_mentions = False):
     print("remove_stop_words: " + str(remove_stop_words))
     print("stem: "+str(stem))
@@ -85,7 +85,6 @@ def pre_process_data(data, remove_stop_words = True, stem = True, include_mentio
 # If train_on_data == False, we will use pretrained vector from glove
 def get_w2vec_model(data, use_pretrained_vecs = False, emb_dim = 200):
     tweets = data['tweets']
-    #print(tweets)
     tokenizer = Tokenizer()
     tokenizer.fit_on_texts(tweets)
     w_index = tokenizer.word_index
@@ -106,19 +105,6 @@ def get_w2vec_model(data, use_pretrained_vecs = False, emb_dim = 200):
         print("glove vectors loaded")
     return w2vec_model, w_index, tokenizer
 
-def pre_process_data_gaydhani(data):
-    tweets = []
-    max_len_padding = 0
-    for tweet in data['tweet_text']:
-        new_tweet = preprocess_gaydhani(tweet)
-        if max_len_padding < len(new_tweet.split(" ")):
-            max_len_padding = len(new_tweet.split(" "))
-        tweets.append(new_tweet)
-
-    data['tweets'] = tweets
-    data = data.drop('tweet_text', axis=1)
-    return data, max_len_padding
-
 def split_data(data, train_test = True, partitioning = 0.8, seed = 123):
     np.random.seed(seed) # Split in training and test set
     if train_test == True:
@@ -137,3 +123,60 @@ def str2bool(v):
         return False
     else:
         raise argparse.ArgumentTypeError('Boolean value expected.')
+
+
+def print_results(true,preds, file_name):
+    conf_m = confusion_matrix(true, preds)
+
+
+    print("confusion_matrix is")
+    print(conf_m)
+    print("Overall accuracy is")
+    print(np.divide(np.sum(np.diagonal(conf_m)),np.sum(conf_m)))
+
+    def normalize_conf_m(col):
+        return np.divide(col, np.sum(col))
+
+    # Calculate precision
+    # precisions:
+    precisions = np.array([])
+    recalls = np.array([])
+    F1s = np.array([])
+    for i in range(conf_m.shape[1]):
+        p = np.divide(conf_m[i,i],np.sum(conf_m[:,i]))
+        r = np.divide(conf_m[i,i],np.sum(conf_m[i,:]))
+        precisions = np.append(precisions,p)
+        recalls = np.append(recalls,r)
+        F1s = np.append(F1s, np.divide(np.multiply(np.multiply(p, r),2), np.add(p, r)))
+    print("precisions are ")
+    print(precisions)
+    print("Recalls are")
+    print(recalls)
+    print("Precision is")
+    print(np.mean(precisions))
+    print("Recall is")
+    print(np.mean(recalls))
+
+    # Get the normalized confusion matrx
+    print(np.apply_along_axis(normalize_conf_m, 0, conf_m))
+
+
+    class_weights = np.array(np.divide(true.value_counts(),np.sum(true.value_counts())))
+    precision_overall = np.sum(np.multiply(precisions, class_weights))
+    recall_overall = np.sum(np.multiply(recalls, class_weights))
+    F1_overall = np.divide(np.multiply(np.multiply(precision_overall, recall_overall),2), np.add(precision_overall, recall_overall))
+
+
+    import datetime
+    with open(file_name, "a") as res:
+        res.write("Result obtained on " + str(datetime.datetime.now()) + "\n \n")
+        res.write("------RESULTS------"+"\n \n")
+        res.write("Confusion matrix : \n"+str(conf_m)+"\n")
+        res.write("Precisions : \n" + str(precisions) + "\n")
+        res.write("Accuracy : \n" + str(np.divide(np.sum(np.diagonal(conf_m)),np.sum(conf_m)))+ "\n")
+        res.write("Recalls : \n" + str(recalls)+ "\n")
+        res.write("F1s : \n" + str(F1s) + "\n")
+        res.write("Precision overall: \n" + str(precision_overall) + "\n")
+        res.write("Recall : \n" + str(recall_overall)+"\n")
+        res.write("F1 overall : \n" + str(F1_overall))
+        res.write("\n\n\n")

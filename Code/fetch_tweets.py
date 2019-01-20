@@ -1,5 +1,4 @@
 # Fetches the tweets from the third dataset and puts them into a file.
-# standard
 
 from __future__ import print_function
 import getopt
@@ -21,6 +20,8 @@ print("starting")
 ids = list(tweets[0])
 call("./set_up_twitter_env_vars.sh")
 import os
+
+# Use your own API keys ;)
 consumer_key = os.environ.get('TWITTER_CONSUMER_KEY')
 consumer_secret = os.environ.get("TWITTER_CONSUMER_SECRET")
 access_token = os.environ.get("TWITTER_ACCESS_TOKEN")

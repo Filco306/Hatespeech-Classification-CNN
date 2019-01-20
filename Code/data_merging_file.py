@@ -1,3 +1,4 @@
+# This file creates the data_merged.csv file, which is then used as the raw data.
 import numpy as np
 import pandas as pd
 pd.set_option('display.expand_frame_repr', False)
@@ -9,6 +10,7 @@ data3 = data3.drop_duplicates(subset='id',keep=False)
 print(data3['class'].value_counts())
 print(data1.columns.values)
 print(data2.columns.values)
+
 # Drop unnecessary columns
 data1 = data1.drop(['unit_id', 'golden', 'unit_state', 'trusted_judgments', 'last_judgment_at',
  'created_at', 'orig_golden', 'orig_last_judgment_at', 'orig_trusted_judgments',
@@ -47,23 +49,22 @@ print(data1['class'].value_counts())
 print(data2['class'].value_counts())
 print(data3['class'].value_counts())
 
-for i in range(data1_nrows):
-    data = data.append({'class': data1.iloc[[i]]['class'].values[0],'tweet_text':data1.iloc[[i]]['tweet_text'].values[0]},ignore_index=True)
-    if i % 100 == 0:
-        print(i)
+def append_data(data, data_to_append, nrows, is_last_set = False):
+    for i in range(nrows):
+        if is_last_set == False:
+            data = data.append({'class': data_to_append.iloc[[i]]['class'].values[0],'tweet_text':data_to_append.iloc[[i]]['tweet_text'].values[0]},ignore_index=True)
+        elif data_to_append.iloc[[i]]['class'].values[0] == 0.0:
+            data = data.append({'class' : 0, 'tweet_text' : data_to_append.iloc[[i]]['tweet_text'].values[0]},ignore_index=True)
+        else:
+            data = data.append({'class' : 2, 'tweet_text' : data_to_append.iloc[[i]]['tweet_text'].values[0]}, ignore_index=True)
+        if i % 100 == 0:
+            print(i)
+    return data
+# Appending all data from the 3 different datasets in the same format.
+data = append_data(data, data1, data1_nrows)
+data = append_data(data, data2, data2_nrows)
+data = append_data(data, data_to_append, data3_nrows, is_last_set = True)
 
-for i in range(data2_nrows):
-    data = data.append({'class' : data2.iloc[[i]]['class'].values[0], 'tweet_text':data2.iloc[[i]]['tweet'].values[0]}, ignore_index=True)
-    if i % 100 == 0:
-        print(i)
-
-for i in range(data3_nrows):
-    if data3.iloc[[i]]['class'].values[0] == 0.0:
-        data = data.append({'class' : 0, 'tweet_text' : data3.iloc[[i]]['tweet_text'].values[0]},ignore_index=True)
-    else:
-        data = data.append({'class' : 2, 'tweet_text' : data3.iloc[[i]]['tweet_text'].values[0]}, ignore_index=True)
-    if i % 100 == 0:
-        print(i)
 print(data.head())
 print(data.shape)
 data.to_csv("data/data_merged.csv", sep='\t', encoding='utf-8')

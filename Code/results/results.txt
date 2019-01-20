@@ -1054,6 +1054,1299 @@ Recall :
 F1 overall :
 0.6771788337598236
 Result obtained on 2019-01-17 21:16:20.206450
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.1
+filters: 	25
+Nr dims: 	25
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 252   57   46]
+ [ 260 2580  154]
+ [  68   54 1125]]
+Precisions :
+[0.43448276 0.95875139 0.8490566 ]
+Accuracy :
+0.8609660574412533
+Recalls :
+[0.70985915 0.86172345 0.9021652 ]
+F1s :
+[0.53903743 0.90765172 0.8748056 ]
+Precision overall:
+0.6087509707108067
+Recall :
+0.7659173396177332
+F1 overall :
+0.6783497087600735
+
+
+Result obtained on 2019-01-17 21:21:31.505109
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.001
+filters: 	25
+Nr dims: 	25
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 241   67   47]
+ [ 279 2558  157]
+ [  67   56 1124]]
+Precisions :
+[0.41056218 0.9541216  0.84638554]
+Accuracy :
+0.853568320278503
+Recalls :
+[0.67887324 0.85437542 0.90136327]
+F1s :
+[0.51167728 0.9014978  0.87300971]
+Precision overall:
+0.5917057586725094
+Recall :
+0.7436763677122368
+F1 overall :
+0.659043700929696
+
+
+Result obtained on 2019-01-17 21:26:54.315988
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.01
+filters: 	25
+Nr dims: 	25
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 249   59   47]
+ [ 250 2586  158]
+ [  60   49 1138]]
+Precisions :
+[0.44543828 0.95991091 0.84735666]
+Accuracy :
+0.8644473455178416
+Recalls :
+[0.70140845 0.86372745 0.91259022]
+F1s :
+[0.54485777 0.9092827  0.87876448]
+Precision overall:
+0.6160710928456032
+Recall :
+0.7617612194398324
+F1 overall :
+0.6812136175980109
+
+
+Result obtained on 2019-01-17 21:32:11.501995
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	1.0
+filters: 	25
+Nr dims: 	25
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 255   42   58]
+ [ 287 2512  195]
+ [  29   24 1194]]
+Precisions :
+[0.44658494 0.97439876 0.82515549]
+Accuracy :
+0.8618363794604004
+Recalls :
+[0.71830986 0.83901136 0.957498  ]
+F1s :
+[0.55075594 0.90165111 0.88641425]
+Precision overall:
+0.6190341077084307
+Recall :
+0.7695340878134037
+F1 overall :
+0.6861281267093531
+
+
+Result obtained on 2019-01-17 21:41:41.902132
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.1
+filters: 	25
+Nr dims: 	50
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 253   54   48]
+ [ 268 2557  169]
+ [  54   45 1148]]
+Precisions :
+[0.44       0.9627259  0.84102564]
+Accuracy :
+0.86118363794604
+Recalls :
+[0.71267606 0.85404142 0.92060946]
+F1s :
+[0.54408602 0.90513274 0.87901991]
+Precision overall:
+0.6128031558684359
+Recall :
+0.7670927149470995
+F1 overall :
+0.6813221874277338
+
+
+Result obtained on 2019-01-17 21:51:19.347823
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.001
+filters: 	25
+Nr dims: 	50
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 244   62   49]
+ [ 279 2556  159]
+ [  72   45 1130]]
+Precisions :
+[0.41008403 0.95981975 0.8445441 ]
+Accuracy :
+0.8550913838120104
+Recalls :
+[0.68732394 0.85370741 0.90617482]
+F1s :
+[0.51368421 0.90365918 0.87427466]
+Precision overall:
+0.5927980812755304
+Recall :
+0.7493718656577023
+F1 overall :
+0.6619522440340393
+
+
+Result obtained on 2019-01-17 21:59:53.508265
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.01
+filters: 	25
+Nr dims: 	50
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 240   66   49]
+ [ 235 2604  155]
+ [  63   57 1127]]
+Precisions :
+[0.44609665 0.95489549 0.84673178]
+Accuracy :
+0.8640121845082681
+Recalls :
+[0.67605634 0.86973948 0.90376905]
+F1s :
+[0.537514   0.91033036 0.87432118]
+Precision overall:
+0.6150909139438386
+Recall :
+0.7461957827553968
+F1 overall :
+0.6743300248345296
+
+
+Result obtained on 2019-01-18 01:29:26.155352
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	1.0
+filters: 	25
+Nr dims: 	50
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 261   42   52]
+ [ 285 2524  185]
+ [  35   30 1182]]
+Precisions :
+[0.44922547 0.97226502 0.83298097]
+Accuracy :
+0.863141862489121
+Recalls :
+[0.73521127 0.84301937 0.9478749 ]
+F1s :
+[0.55769231 0.90304114 0.88672168]
+Precision overall:
+0.6207797641840813
+Recall :
+0.7808884424731267
+F1 overall :
+0.6916897178236346
+
+
+Result obtained on 2019-01-18 06:38:43.781414
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.1
+filters: 	50
+Nr dims: 	100
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 248   58   49]
+ [ 242 2588  164]
+ [  52   45 1150]]
+Precisions :
+[0.45756458 0.96172427 0.84372707]
+Accuracy :
+0.8672758920800696
+Recalls :
+[0.69859155 0.86439546 0.92221331]
+F1s :
+[0.55295429 0.91046614 0.88122605]
+Precision overall:
+0.6241822476197403
+Recall :
+0.7608507310569783
+F1 overall :
+0.685773590558115
+
+
+Result obtained on 2019-01-18 09:35:17.772947
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.001
+filters: 	50
+Nr dims: 	100
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 237   65   53]
+ [ 285 2542  167]
+ [  69   51 1127]]
+Precisions :
+[0.40101523 0.95635816 0.83667409]
+Accuracy :
+0.8498694516971279
+Recalls :
+[0.66760563 0.8490314  0.90376905]
+F1s :
+[0.50105708 0.8995046  0.8689283 ]
+Precision overall:
+0.5853432390363027
+Recall :
+0.7350721126634426
+F1 overall :
+0.6517184017859227
+
+
+Result obtained on 2019-01-18 09:53:29.898034
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.01
+filters: 	50
+Nr dims: 	100
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 237   64   54]
+ [ 269 2557  168]
+ [  57   52 1138]]
+Precisions :
+[0.42095915 0.95660307 0.83676471]
+Accuracy :
+0.855526544821584
+Recalls :
+[0.66760563 0.85404142 0.91259022]
+F1s :
+[0.51633987 0.9024175  0.87303414]
+Precision overall:
+0.598408873676415
+Recall :
+0.7371128025301767
+F1 overall :
+0.6605581171657686
+
+
+Result obtained on 2019-01-18 10:10:44.219480
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	1.0
+filters: 	50
+Nr dims: 	100
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 252   49   54]
+ [ 253 2560  181]
+ [  34   35 1178]]
+Precisions :
+[0.46753247 0.96822995 0.83368719]
+Accuracy :
+0.8681462140992167
+Recalls :
+[0.70985915 0.85504342 0.9446672 ]
+F1s :
+[0.56375839 0.90812345 0.88571429]
+Precision overall:
+0.6316653424236939
+Recall :
+0.767387796186081
+F1 overall :
+0.692943336707451
+
+
+Result obtained on 2019-01-18 10:46:19.644619
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.1
+filters: 	50
+Nr dims: 	200
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 245   62   48]
+ [ 268 2555  171]
+ [  54   50 1143]]
+Precisions :
+[0.43209877 0.95800525 0.83920705]
+Accuracy :
+0.8579199303742384
+Recalls :
+[0.69014085 0.85337341 0.91659984]
+F1s :
+[0.53145336 0.90266737 0.87619778]
+Precision overall:
+0.6062347153694746
+Recall :
+0.7519215143234951
+F1 overall :
+0.6712643438953082
+
+
+Result obtained on 2019-01-18 11:18:56.910778
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.001
+filters: 	50
+Nr dims: 	200
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 244   59   52]
+ [ 315 2502  177]
+ [  72   51 1124]]
+Precisions :
+[0.3866878  0.95788668 0.83074649]
+Accuracy :
+0.8420365535248042
+Recalls :
+[0.68732394 0.83567134 0.90136327]
+F1s :
+[0.49492901 0.89261506 0.86461538]
+Precision overall:
+0.5759667002652481
+Recall :
+0.7441066173107526
+F1 overall :
+0.6493285294259199
+
+
+Result obtained on 2019-01-18 11:51:33.524624
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.01
+filters: 	50
+Nr dims: 	200
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 237   66   52]
+ [ 281 2545  168]
+ [  57   55 1135]]
+Precisions :
+[0.41217391 0.95461365 0.83763838]
+Accuracy :
+0.8522628372497825
+Recalls :
+[0.66760563 0.8500334  0.91018444]
+F1s :
+[0.50967742 0.89929329 0.87240584]
+Precision overall:
+0.5922135650728593
+Recall :
+0.7358395114702745
+F1 overall :
+0.6562601271081485
+
+
+Result obtained on 2019-01-18 13:12:36.614041
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	1.0
+filters: 	50
+Nr dims: 	200
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 257   43   55]
+ [ 278 2536  180]
+ [  40   33 1174]]
+Precisions :
+[0.44695652 0.97090352 0.83321505]
+Accuracy :
+0.863141862489121
+Recalls :
+[0.72394366 0.84702739 0.9414595 ]
+F1s :
+[0.55268817 0.90474492 0.88403614]
+Precision overall:
+0.6189503611082925
+Recall :
+0.7741402524831734
+F1 overall :
+0.6879012522920357
+
+
+Result obtained on 2019-01-18 13:17:08.869441
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.1
+filters: 	25
+Nr dims: 	25
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 255   48   52]
+ [ 529 2319  146]
+ [ 128    7 1112]]
+Precisions :
+[0.27960526 0.97683235 0.84885496]
+Accuracy :
+0.8020017406440383
+Recalls :
+[0.71830986 0.7745491  0.89174018]
+F1s :
+[0.40252565 0.86400894 0.86976926]
+Precision overall:
+0.5127483921612097
+Recall :
+0.7469647968648986
+F1 overall :
+0.6080828587491488
+
+
+Result obtained on 2019-01-18 13:21:14.687150
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.001
+filters: 	25
+Nr dims: 	25
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 250   56   49]
+ [ 287 2545  162]
+ [  81   59 1107]]
+Precisions :
+[0.40453074 0.95676692 0.83990895]
+Accuracy :
+0.8489991296779809
+Recalls :
+[0.70422535 0.8500334  0.88773055]
+F1s :
+[0.51387461 0.90024761 0.86315789]
+Precision overall:
+0.5879941411463895
+Recall :
+0.757960552790119
+F1 overall :
+0.6622457149091707
+
+
+Result obtained on 2019-01-18 13:25:37.512226
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.01
+filters: 	25
+Nr dims: 	25
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 242   61   52]
+ [ 246 2585  163]
+ [  63   47 1137]]
+Precisions :
+[0.43920145 0.95989603 0.84097633]
+Accuracy :
+0.8624891209747607
+Recalls :
+[0.68169014 0.86339345 0.91178829]
+F1s :
+[0.53421634 0.90909091 0.8749519 ]
+Precision overall:
+0.6115113337637837
+Recall :
+0.7487634381900319
+F1 overall :
+0.673212998140774
+
+
+Result obtained on 2019-01-18 13:29:57.818605
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	1.0
+filters: 	25
+Nr dims: 	25
+
+ ------RESULTS------
+
+Confusion matrix :
+[[   0  355    0]
+ [   0 2994    0]
+ [   0 1247    0]]
+Precisions :
+[       nan 0.65143603        nan]
+Accuracy :
+0.6514360313315927
+Recalls :
+[0. 1. 0.]
+F1s :
+[       nan 0.78893281        nan]
+Precision overall:
+nan
+Recall :
+0.27132288946910355
+F1 overall :
+nan
+
+
+Result obtained on 2019-01-18 13:38:31.517160
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.1
+filters: 	25
+Nr dims: 	50
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 249   54   52]
+ [ 274 2547  173]
+ [  47   44 1156]]
+Precisions :
+[0.43684211 0.96294896 0.83707458]
+Accuracy :
+0.8598781549173194
+Recalls :
+[0.70140845 0.8507014  0.92702486]
+F1s :
+[0.53837838 0.90335166 0.87975647]
+Precision overall:
+0.6105013259019801
+Recall :
+0.7593419007588078
+F1 overall :
+0.6768354629255358
+
+
+Result obtained on 2019-01-18 13:46:23.700962
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.001
+filters: 	25
+Nr dims: 	50
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 238   64   53]
+ [ 281 2554  159]
+ [  69   54 1124]]
+Precisions :
+[0.4047619  0.95583832 0.84131737]
+Accuracy :
+0.8520452567449956
+Recalls :
+[0.67042254 0.85303941 0.90136327]
+F1s :
+[0.504772   0.90151783 0.87030585]
+Precision overall:
+0.5880015658723582
+Recall :
+0.7378087856594302
+F1 overall :
+0.6544415960863409
+
+
+Result obtained on 2019-01-18 13:54:12.453523
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.01
+filters: 	25
+Nr dims: 	50
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 236   67   52]
+ [ 249 2583  162]
+ [  68   57 1122]]
+Precisions :
+[0.42676311 0.95419283 0.83982036]
+Accuracy :
+0.8574847693646649
+Recalls :
+[0.66478873 0.86272545 0.89975942]
+F1s :
+[0.51982379 0.90615681 0.86875726]
+Precision overall:
+0.6017718544492495
+Recall :
+0.7366428844846277
+F1 overall :
+0.6624119441724992
+
+
+Result obtained on 2019-01-18 14:01:52.479172
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	1.0
+filters: 	25
+Nr dims: 	50
+
+ ------RESULTS------
+
+Confusion matrix :
+[[   0  355    0]
+ [   0 2994    0]
+ [   0 1247    0]]
+Precisions :
+[       nan 0.65143603        nan]
+Accuracy :
+0.6514360313315927
+Recalls :
+[0. 1. 0.]
+F1s :
+[       nan 0.78893281        nan]
+Precision overall:
+nan
+Recall :
+0.27132288946910355
+F1 overall :
+nan
+
+
+Result obtained on 2019-01-18 14:16:53.425884
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.1
+filters: 	50
+Nr dims: 	100
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 240   64   51]
+ [ 239 2583  172]
+ [  45   47 1155]]
+Precisions :
+[0.45801527 0.95879733 0.83817126]
+Accuracy :
+0.8655352480417755
+Recalls :
+[0.67605634 0.86272545 0.92622294]
+F1s :
+[0.54607509 0.90822785 0.88      ]
+Precision overall:
+0.6232525621067424
+Recall :
+0.746027079040806
+F1 overall :
+0.6791356191106749
+
+
+Result obtained on 2019-01-18 14:32:19.842723
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.001
+filters: 	50
+Nr dims: 	100
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 229   73   53]
+ [ 271 2550  173]
+ [  76   51 1120]]
+Precisions :
+[0.39756944 0.95362752 0.8320951 ]
+Accuracy :
+0.8483463881636205
+Recalls :
+[0.64507042 0.85170341 0.89815557]
+F1s :
+[0.49194415 0.89978829 0.86386425]
+Precision overall:
+0.5820039596966293
+Recall :
+0.720683251069524
+F1 overall :
+0.6439619616175033
+
+
+Result obtained on 2019-01-18 14:46:47.509475
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.01
+filters: 	50
+Nr dims: 	100
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 239   65   51]
+ [ 268 2562  164]
+ [  72   59 1116]]
+Precisions :
+[0.41278066 0.9538347  0.83846732]
+Accuracy :
+0.8522628372497825
+Recalls :
+[0.67323944 0.85571142 0.89494787]
+F1s :
+[0.5117773  0.90211268 0.86578743]
+Precision overall:
+0.5924614995094413
+Recall :
+0.7398732622100583
+F1 overall :
+0.65801243797045
+
+
+Result obtained on 2019-01-18 15:01:29.412442
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	1.0
+filters: 	50
+Nr dims: 	100
+
+ ------RESULTS------
+
+Confusion matrix :
+[[   0  355    0]
+ [   0 2994    0]
+ [   0 1247    0]]
+Precisions :
+[       nan 0.65143603        nan]
+Accuracy :
+0.6514360313315927
+Recalls :
+[0. 1. 0.]
+F1s :
+[       nan 0.78893281        nan]
+Precision overall:
+nan
+Recall :
+0.27132288946910355
+F1 overall :
+nan
+
+
+Result obtained on 2019-01-18 15:32:54.176923
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.1
+filters: 	50
+Nr dims: 	200
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 247   58   50]
+ [ 249 2586  159]
+ [  50   56 1141]]
+Precisions :
+[0.45238095 0.95777778 0.84518519]
+Accuracy :
+0.8646649260226283
+Recalls :
+[0.69577465 0.86372745 0.91499599]
+F1s :
+[0.54827969 0.90832455 0.8787062 ]
+Precision overall:
+0.6198473022319846
+Recall :
+0.7582769818605295
+F1 overall :
+0.682109657272839
+
+
+Result obtained on 2019-01-18 16:02:05.368064
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.001
+filters: 	50
+Nr dims: 	200
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 225   78   52]
+ [ 275 2553  166]
+ [  73   60 1114]]
+Precisions :
+[0.39267016 0.94871795 0.83633634]
+Accuracy :
+0.8468233246301131
+Recalls :
+[0.63380282 0.85270541 0.89334403]
+F1s :
+[0.48491379 0.89815303 0.86390074]
+Precision overall:
+0.5778079050723371
+Recall :
+0.7132433442574564
+F1 overall :
+0.6384218175167342
+
+
+Result obtained on 2019-01-18 16:31:33.981965
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.01
+filters: 	50
+Nr dims: 	200
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 236   66   53]
+ [ 263 2561  170]
+ [  71   60 1116]]
+Precisions :
+[0.41403509 0.95310755 0.8334578 ]
+Accuracy :
+0.8513925152306353
+Recalls :
+[0.66478873 0.85537742 0.89494787]
+F1s :
+[0.51027027 0.90160183 0.86310905]
+Precision overall:
+0.592694450418196
+Recall :
+0.7342775467799664
+F1 overall :
+0.6559327973191326
+
+
+Result obtained on 2019-01-18 17:08:46.720207
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	1.0
+filters: 	50
+Nr dims: 	200
+
+ ------RESULTS------
+
+Confusion matrix :
+[[ 236   44   75]
+ [ 265 2485  244]
+ [  16   16 1215]]
+Precisions :
+[0.45647969 0.97642436 0.79204694]
+Accuracy :
+0.856396866840731
+Recalls :
+[0.66478873 0.82999332 0.97433841]
+F1s :
+[0.5412844  0.89727388 0.87378641]
+Precision overall:
+0.6234721572076268
+Recall :
+0.7335224697829847
+F1 overall :
+0.6740348524593351
+
+
+Result obtained on 2019-01-19 16:22:13.990281
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.1
+filters: 	25
+Nr dims: 	25
+
+ ------RESULTS------
+OPTIMIZING PRECISION AND RECALL
+Confusion matrix :
+[[ 252   57   46]
+ [ 262 2578  154]
+ [  65   51 1131]]
+Precisions :
+[0.43523316 0.95979151 0.84973704]
+Accuracy :
+0.8618363794604004
+Recalls :
+[0.70985915 0.86105544 0.90697674]
+F1s :
+[0.53961456 0.90774648 0.87742436]
+Precision overall:
+0.6095745750499509
+Recall :
+0.7661077443406783
+F1 overall :
+0.6789355305602927
+
+
+Result obtained on 2019-01-19 16:29:50.137967
+
+PARAMETERS SET TO
+Padding: 	69
+ Using pretrained vectors: 	True
+ Stem: 	False
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.1
+filters: 	25
+Nr dims: 	25
+
+ ------RESULTS------
+ OPTIMIZING RECALL
+Confusion matrix :
+[[ 252   58   45]
+ [ 261 2579  154]
+ [  68   52 1127]]
+Precisions :
+[0.43373494 0.9590926  0.84992459]
+Accuracy :
+0.86118363794604
+Recalls :
+[0.70985915 0.86138945 0.90376905]
+F1s :
+[0.53846154 0.90761922 0.87602021]
+Precision overall:
+0.6084234353659608
+Recall :
+0.765950600456191
+F1 overall :
+0.678159341640067
+
+
+NOW: OPTIMIZE PRECISION!
+Result obtained on 2019-01-19 16:38:43.484630
  
 PARAMETERS SET TO 
 Padding: 	69
@@ -1072,60 +2365,60 @@ Nr dims: 	25
  ------RESULTS------
  
 Confusion matrix : 
-[[ 252   57   46]
- [ 260 2580  154]
- [  68   54 1125]]
+[[ 254   57   44]
+ [ 267 2573  154]
+ [  71   50 1126]]
 Precisions : 
-[0.43448276 0.95875139 0.8490566 ]
+[0.42905405 0.96007463 0.85045317]
 Accuracy : 
-0.8609660574412533
+0.8600957354221062
 Recalls : 
-[0.70985915 0.86172345 0.9021652 ]
+[0.71549296 0.85938544 0.90296712]
 F1s : 
-[0.53903743 0.90765172 0.8748056 ]
+[0.53643083 0.90694395 0.87592377]
 Precision overall: 
-0.6087509707108067
+0.6056814128964885
 Recall : 
-0.7659173396177332
+0.7690149878360943
 F1 overall : 
-0.6783497087600735
+0.6776450191081115
 
 
-Result obtained on 2019-01-17 21:21:31.505109
+Result obtained on 2019-01-20 00:27:15.694048
  
 PARAMETERS SET TO 
 Padding: 	69
- Using pretrained vectors: 	True
- Stem: 	False
+ Using pretrained vectors: 	False
+ Stem: 	True
  Remove stopwords: 	True
  Activation function: 	relu
  use_validation: 	True
  n_epochs: 	10
 train_fraction 	0.6
 validation_fraction: 	0.2
-l2_reg: 	0.001
+l2_reg: 	0.01
 filters: 	25
 Nr dims: 	25
  
  ------RESULTS------
  
 Confusion matrix : 
-[[ 241   67   47]
- [ 279 2558  157]
- [  67   56 1124]]
+[[ 652  608  587]
+ [ 327 4276  230]
+ [ 282  122 4133]]
 Precisions : 
-[0.41056218 0.9541216  0.84638554]
+[0.51704996 0.85417499 0.83494949]
 Accuracy : 
-0.853568320278503
+0.8077917446732638
 Recalls : 
-[0.67887324 0.85437542 0.90136327]
+[0.35300487 0.88475067 0.91095438]
 F1s : 
-[0.51167728 0.9014978  0.87300971]
+[0.41956242 0.86919402 0.87129757]
 Precision overall: 
-0.5917057586725094
+0.7057543108872668
 Recall : 
-0.7436763677122368
+0.6599553429537701
 F1 overall : 
-0.659043700929696
+0.6820868944914424
 
 
