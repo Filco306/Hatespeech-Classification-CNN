@@ -1,6 +1,10 @@
 Code/data_handling/set_twitter_api_keys.py
 Code/data_handling/set_up_twitter_env_vars.sh
 *.log
+glove-twitter-25.txt
+glove-twitter-50.txt
+glove-twitter-100.txt
+glove-twitter-200.txt
 *.tex
 *.zip
 Pics/
