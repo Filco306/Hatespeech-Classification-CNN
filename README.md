@@ -10,3 +10,21 @@ python -m gensim.scripts.glove2word2vec --input [filename50d] --output glove-twi
 python -m gensim.scripts.glove2word2vec --input [filename100d] --output glove-twitter-100.txt
 python -m gensim.scripts.glove2word2vec --input [filename200d] --output glove-twitter-200.txt
 3. Place the files you have retrieved in the folder "glove.twitter.27B". You should be good to go.
+
+The file "data_merged.csv" contains all the data, which is preprocessed and partitioned when a model file is run. 
+
+To run a model, simply type "python [modelfilename.py]" (example: python cnn.py). Adding arguments are possible. 
+
+The following arguments exist.
+
+  For cnn.py: 
+    -regval : the regularizing l2-value. 
+    -activationfunction: which activation function to use in the intermediate neurones. Suggestions can be "relu" or "tanh"
+    -use_pretrained_vecs: True or False. If true, the one uses the glove vectors for the training. Default is False.
+    -emb_dim: default is 200, but can also (when using pretrained vectors) be 25, 50 and 100. Can be any number of dimensions when not using pretrained vectors. 
+   
+   For xgboost_1.py:
+    -seed: the random state seed for partitioning the data. Is an integer. Default 123
+    -use_pretrained_vecs: True or False. If true, the one uses the glove vectors for the training. Default is False.
+    -emb_dim: default is 200, but can also (when using pretrained vectors) be 25, 50 and 100. Can be any number of dimensions when not using pretrained vectors. 
+    
