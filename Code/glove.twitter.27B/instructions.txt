@@ -1,0 +1,7 @@
+Put your GloVe vector files in here!
+
+Preferrably, name them as:
+glove-twitter-25.txt
+glove-twitter-50.txt
+glove-twitter-100.txt
+glove-twitter-200.txt
