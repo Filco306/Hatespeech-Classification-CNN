@@ -1,10 +1,16 @@
 # This file creates the data_merged.csv file, which is then used as the raw data.
 import numpy as np
 import pandas as pd
+
+# To change the data files used, change the paths of these.
+filename_data1 = "data_used/twitter_hate_speech.csv"
+filename_data2 = "data_used/twitter_hate_speech2.csv"
+filename_data3 = "data_used/tweets_third_dataset.csv"
+
 pd.set_option('display.expand_frame_repr', False)
-data1 = pd.read_csv("data/twitter_hate_speech.csv")
-data2 = pd.read_csv("data/twitter_hate_speech2.csv")
-data3 = pd.read_csv("data/tweets_third_dataset.csv", sep="\t")
+data1 = pd.read_csv(filename_data1)
+data2 = pd.read_csv(filename_data2)
+data3 = pd.read_csv(filename_data3, sep="\t")
 print(data3[data3['id'].isin(data3['id'].value_counts()[data3['id'].value_counts()>2].index)])
 data3 = data3.drop_duplicates(subset='id',keep=False)
 print(data3['class'].value_counts())

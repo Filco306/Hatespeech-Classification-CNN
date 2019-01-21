@@ -2422,3 +2422,41 @@ F1 overall :
 0.6820868944914424
 
 
+Result obtained on 2019-01-21 01:02:42.861910
+ 
+PARAMETERS SET TO 
+Padding: 	69
+ Using pretrained vectors: 	False
+ Stem: 	True
+ Remove stopwords: 	True
+ Activation function: 	relu
+ use_validation: 	True
+ n_epochs: 	10
+train_fraction 	0.6
+validation_fraction: 	0.2
+l2_reg: 	0.01
+filters: 	25
+Nr dims: 	25
+ 
+ ------RESULTS------
+ 
+Confusion matrix : 
+[[ 693  579  575]
+ [ 299 4287  247]
+ [ 250  168 4119]]
+Precisions : 
+[0.55797101 0.85160906 0.83363692]
+Accuracy : 
+0.8111794597485958
+Recalls : 
+[0.37520303 0.88702669 0.90786864]
+F1s : 
+[0.4486889  0.86895713 0.86917071]
+Precision overall: 
+0.7221317281036002
+Recall : 
+0.6699322209832742
+F1 overall : 
+0.6950532879876248
+
+

@@ -1,4 +1,6 @@
 ### This code was meant to simulate A. Gaydhani, and is therefore inspired by his approach
+### His code is available at https://github.com/adityagaydhani14/Toxic-Language-Detection-in-Online-Content
+### Paper available at https://arxiv.org/abs/1809.08651
 from useful_functions import pre_process_data, split_data, str2bool, print_results
 import numpy as np
 import pandas as pd

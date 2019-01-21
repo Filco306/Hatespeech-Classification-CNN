@@ -1,3 +1,5 @@
+# XGBoost run. Simple implementation, without any adjustments of hyperparameters.
+# Data is only split up into training and validation set. 
 from xgboost import XGBClassifier
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score

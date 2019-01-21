@@ -37,7 +37,7 @@ auth.set_access_token(access_token, access_token_secret)
 
 api = tweepy.API(auth)
 
-# Credits to: chrisinmtown@StackOverflow. Copied from https://stackoverflow.com/questions/28384588/twitter-api-get-tweets-with-specific-id
+# Full credits to: chrisinmtown@StackOverflow. Copied from https://stackoverflow.com/questions/28384588/twitter-api-get-tweets-with-specific-id
 # Slightly modified to suit my own purpose
 def get_tweet_list(twapi, idlist):
     '''
@@ -54,7 +54,7 @@ def get_tweet_list(twapi, idlist):
             print('%s,%s' % (tweet.id, tweet.text.encode('UTF-8')))
             yield tweet.id, tweet.text.encode('UTF-8')
 
-# Credits to: chrisinmtown@StackOverflow. Copied from https://stackoverflow.com/questions/28384588/twitter-api-get-tweets-with-specific-id
+# Full credits to: chrisinmtown@StackOverflow. Copied from https://stackoverflow.com/questions/28384588/twitter-api-get-tweets-with-specific-id
 # Slightly modified to suit my own purpose
 def get_tweets_bulk(twapi, id_list):
     '''

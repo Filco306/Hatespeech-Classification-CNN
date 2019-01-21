@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np
 import keras
 from pandas import Series
-from keras import regularizers
+from keras.regularizers import l2
 from keras.models import Model
 from keras.preprocessing.sequence import pad_sequences
 from keras.layers.convolutional import Conv2D, MaxPooling2D
@@ -36,9 +36,7 @@ validation_fraction = 0.2
 
 use_pretrained_vecs = args.use_pretrained_vecs
 if use_pretrained_vecs == True:
-    """If we use pretrained vectors, we must:
-    - not use stemming in preprocessing.
-    """
+    # If we use pretrained vectors, we must not use stemming in preprocessing.
     print("Using preprocessed vectors")
     remove_stop_words = True
     stem = False
@@ -87,6 +85,11 @@ test_feats = pad_sequences(tokenizer.texts_to_sequences(test['tweets']), maxlen 
 labels_train = keras.utils.to_categorical(np.asarray(train['class']))
 labels_test = keras.utils.to_categorical(np.asarray(test['class']))
 
+# The following 8 lines is credited to Marija Kekic.
+# It creates the embedding matrix through the use of the vectors that has either been trained
+# on the GloVe vectors, or the vectors trained on the dataset.
+# This emb_matrix is later used for initializing the weights in the embedding layer in the CNN.
+# Code is available at https://www.kaggle.com/marijakekic/cnn-in-keras-with-pretrained-word2vec-weights
 vocab_length = len(dic_of_words)+1
 emb_matrix = np.zeros((vocab_length,emb_dim))
 for w, i in dic_of_words.items():
@@ -96,34 +99,53 @@ for w, i in dic_of_words.items():
     except KeyError:
         emb_matrix[i] = np.zeros(emb_dim) # If the word does not exist, we set it to zeros and consider it non-informative!
 
+
+# Here begins the network architecture.
+# Do note that this is the same architecture used by Yoon Kim (2014, see paper).
+# Paper is available at https://www.aclweb.org/anthology/D14-1181
+# Originally, I found the implementation on Kaggle, made by Marija Kekic.
+# She also uses the exact same network architecture as Yoon Kim, but for a different problem.
+# Her code is available at https://www.kaggle.com/marijakekic/cnn-in-keras-with-pretrained-word2vec-weights
+# My implementation is inspired by her work, although changes had to be made to suit this problem.
+
+# Embedding layer. Will convert each word represented as an integer in the vocabulary.
+# Weights are initialized as mentioned. One can have several settings here.
+
+# Uncomment the line below to use the word2vec model as before, and keep training.
 emb_layer = Embedding(vocab_length, emb_dim, weights=[emb_matrix], trainable=True)
+# Uncomment the line below to randomly initialize each word's representation, and keep training.
+#emb_layer = Embedding(vocab_length, emb_dim, trainable=True)
+
 print("train_feats.shape is " + str(train_feats.shape))
 inputs = Input(shape=(train_feats.shape[1],))
 emb = emb_layer(inputs)
 
-# Here begins the network architecture. Do note that this is the same architecture used by Yoon Kim (2014, see paper)
-# Paper is available at https://www.aclweb.org/anthology/D14-1181
-# My implementation is partially inspired by his work, although some changes had to be made to suit this problem.
-
+# Reshapes the input to correct dimensions to match the input to the convolutional layer.
 rshape = Rshape((train_feats.shape[1],emb_dim,1))(emb)
-convolutional_neurone0 = Conv2D(filters, (3, emb_dim), activation = activation_function, kernel_regularizer=regularizers.l2(l2_reg))(rshape)
-convolutional_neurone1 = Conv2D(filters, (4, emb_dim), activation = activation_function, kernel_regularizer=regularizers.l2(l2_reg))(rshape)
-convolutional_neurone2 = Conv2D(filters, (5, emb_dim), activation = activation_function, kernel_regularizer=regularizers.l2(l2_reg))(rshape)
+# Convolutional layer. Kind of the main component of a CNN.
+convolutional_neurone0 = Conv2D(filters, (3, emb_dim), activation = activation_function, kernel_regularizer=l2(l2_reg))(rshape)
+convolutional_neurone1 = Conv2D(filters, (4, emb_dim), activation = activation_function, kernel_regularizer=l2(l2_reg))(rshape)
+convolutional_neurone2 = Conv2D(filters, (5, emb_dim), activation = activation_function, kernel_regularizer=l2(l2_reg))(rshape)
+# Max-pooling layers. Extract the highest values in the output of the convolutions retrieved from the first layers.
 m_pool0 = MaxPooling2D((train_feats.shape[1] - 3 + 1,1), strides=(1,1))(convolutional_neurone0)
 m_pool1 = MaxPooling2D((train_feats.shape[1] - 4 + 1,1), strides=(1,1))(convolutional_neurone1)
 m_pool2 = MaxPooling2D((train_feats.shape[1] - 5 + 1,1), strides=(1,1))(convolutional_neurone2)
+# concatenates the input of all layers
 tensor_merged = keras.layers.concatenate([m_pool0, m_pool1, m_pool2], axis=1)
+#Flattens the input to a 1D-vector. For correct input into last layer
 flat = Flatten()(tensor_merged)
-rshape = Rshape((3*filters,))(flat) # three times the number of filters
+# Reshapes the data correctly.
+rshape = Rshape((3*filters,))(flat)
+# Dropout, to prevent overfitting.
 d_out = Dropout(0.5)(flat)
-output = Dense(units=3, activation='softmax',kernel_regularizer=regularizers.l2(0.01))(d_out)
+output = Dense(units=3, activation='softmax',kernel_regularizer=l2(0.01))(d_out)
 model = Model(inputs, output)
 
 # Function fetched from: https://stackoverflow.com/questions/43076609/how-to-calculate-precision-and-recall-in-keras
 # Credits to Christian Skjødt@StackOverflow
 # https://keras.io/metrics/
 # Function is used to be able to aim for precision or recall instead of accuracy.
-# After testing it however, I am uncertain whether it works.
+# After testing it however, I am uncertain whether it actually works. Thus, the results when using this was not included in the paper.
 def as_keras_metric(method):
     @functools.wraps(method)
     def wrapper(self, args, **kwargs):
@@ -134,7 +156,6 @@ def as_keras_metric(method):
             value = tf.identity(value)
         return value
     return wrapper
-
 precision = as_keras_metric(tf.metrics.precision)
 recall = as_keras_metric(tf.metrics.recall)
 

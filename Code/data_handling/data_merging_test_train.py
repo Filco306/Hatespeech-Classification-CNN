@@ -1,6 +1,6 @@
 # Was made to import and process A. Gaydhani's data. Available at his repo:
 # https://github.com/adityagaydhani14/Toxic-Language-Detection-in-Online-Content/
-# Observe that the training and test data is mixed up, and it was therefore later not used in my work
+# Observe that the training and test data they used seems to be mixed up, and it was therefore later not used in my work
 import pandas as pd
 
 train = pd.read_csv("../../Data/Gaydhani/train.csv", sep = ",")
