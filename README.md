@@ -17,14 +17,16 @@ To run a model, simply type "python [modelfilename.py]" (example: python cnn.py)
 
 The following arguments exist.
 
-  For cnn.py: 
-    -regval : the regularizing l2-value. 
-    -activationfunction: which activation function to use in the intermediate neurones. Suggestions can be "relu" or "tanh"
-    -use_pretrained_vecs: True or False. If true, the one uses the glove vectors for the training. Default is False.
-    -emb_dim: default is 200, but can also (when using pretrained vectors) be 25, 50 and 100. Can be any number of dimensions when not using pretrained vectors. 
+For cnn.py: 
+
+    - -regval : the regularizing l2-value. 
+    - -activationfunction: which activation function to use in the intermediate neurones. Suggestions can be "relu" or "tanh"
+    - -use_pretrained_vecs: True or False. If true, the one uses the glove vectors for the training. Default is False.
+    - -emb_dim: default is 200, but can also (when using pretrained vectors) be 25, 50 and 100. Can be any number of dimensions when not using pretrained vectors. 
    
-   For xgboost_1.py:
-    -seed: the random state seed for partitioning the data. Is an integer. Default 123
-    -use_pretrained_vecs: True or False. If true, the one uses the glove vectors for the training. Default is False.
-    -emb_dim: default is 200, but can also (when using pretrained vectors) be 25, 50 and 100. Can be any number of dimensions when not using pretrained vectors. 
+For xgboost_1.py:
+   
+    - -seed: the random state seed for partitioning the data. Is an integer. Default 123
+    - -use_pretrained_vecs: True or False. If true, the one uses the glove vectors for the training. Default is False.
+    - -emb_dim: default is 200, but can also (when using pretrained vectors) be 25, 50 and 100. Can be any number of dimensions when not using pretrained vectors. 
     
