@@ -2347,8 +2347,8 @@ F1 overall :
 
 NOW: OPTIMIZE PRECISION!
 Result obtained on 2019-01-19 16:38:43.484630
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	True
  Stem: 	False
@@ -2361,32 +2361,32 @@ validation_fraction: 	0.2
 l2_reg: 	0.1
 filters: 	25
 Nr dims: 	25
- 
+
  ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 254   57   44]
  [ 267 2573  154]
  [  71   50 1126]]
-Precisions : 
+Precisions :
 [0.42905405 0.96007463 0.85045317]
-Accuracy : 
+Accuracy :
 0.8600957354221062
-Recalls : 
+Recalls :
 [0.71549296 0.85938544 0.90296712]
-F1s : 
+F1s :
 [0.53643083 0.90694395 0.87592377]
-Precision overall: 
+Precision overall:
 0.6056814128964885
-Recall : 
+Recall :
 0.7690149878360943
-F1 overall : 
+F1 overall :
 0.6776450191081115
 
 
 Result obtained on 2019-01-20 00:27:15.694048
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	False
  Stem: 	True
@@ -2399,32 +2399,32 @@ validation_fraction: 	0.2
 l2_reg: 	0.01
 filters: 	25
 Nr dims: 	25
- 
+
  ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 652  608  587]
  [ 327 4276  230]
  [ 282  122 4133]]
-Precisions : 
+Precisions :
 [0.51704996 0.85417499 0.83494949]
-Accuracy : 
+Accuracy :
 0.8077917446732638
-Recalls : 
+Recalls :
 [0.35300487 0.88475067 0.91095438]
-F1s : 
+F1s :
 [0.41956242 0.86919402 0.87129757]
-Precision overall: 
+Precision overall:
 0.7057543108872668
-Recall : 
+Recall :
 0.6599553429537701
-F1 overall : 
+F1 overall :
 0.6820868944914424
 
 
 Result obtained on 2019-01-21 01:02:42.861910
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	False
  Stem: 	True
@@ -2437,26 +2437,24 @@ validation_fraction: 	0.2
 l2_reg: 	0.01
 filters: 	25
 Nr dims: 	25
- 
+
  ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 693  579  575]
  [ 299 4287  247]
  [ 250  168 4119]]
-Precisions : 
+Precisions :
 [0.55797101 0.85160906 0.83363692]
-Accuracy : 
+Accuracy :
 0.8111794597485958
-Recalls : 
+Recalls :
 [0.37520303 0.88702669 0.90786864]
-F1s : 
+F1s :
 [0.4486889  0.86895713 0.86917071]
-Precision overall: 
+Precision overall:
 0.7221317281036002
-Recall : 
+Recall :
 0.6699322209832742
-F1 overall : 
+F1 overall :
 0.6950532879876248
-
-

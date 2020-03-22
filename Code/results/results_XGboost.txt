@@ -1,20 +1,20 @@
 Result obtained on 2019-01-18 21:10:37.373084
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	True
  Stem: 	False
  Remove stopwords: 	True
  Result obtained on 2019-01-18 21:12:40.672032
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	True
  Stem: 	False
  Remove stopwords: 	True
  Result obtained on 2019-01-18 21:14:55.461186
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	True
  Stem: 	False
@@ -24,32 +24,32 @@ Padding: 	69
 train_fraction 	0.6
 validation_fraction: 	0.2
 Nr dims: 	25
- 
+
  ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 323  734 1228]
  [   0 4758 1206]
  [   0  818 4954]]
-Precisions : 
+Precisions :
 [1.         0.7540412  0.67054683]
-Accuracy : 
+Accuracy :
 0.7157121460666144
-Recalls : 
+Recalls :
 [0.14135667 0.79778672 0.85828136]
-F1s : 
+F1s :
 [0.24769939 0.77529738 0.75288754]
-Precision overall: 
+Precision overall:
 0.8450556554265753
-Recall : 
+Recall :
 0.528425152048512
-F1 overall : 
+F1 overall :
 0.6502437613659084
 
 
 Result obtained on 2019-01-19 11:33:32.798782
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	True
  Stem: 	False
@@ -59,32 +59,32 @@ Padding: 	69
 train_fraction 	0.6
 validation_fraction: 	0.2
 Nr dims: 	25
- 
+
  ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 342  739 1211]
  [   0 4831 1218]
  [   1  771 4908]]
-Precisions : 
+Precisions :
 [0.99708455 0.76186721 0.66893826]
-Accuracy : 
+Accuracy :
 0.7189929391626846
-Recalls : 
+Recalls :
 [0.14921466 0.7986444  0.86408451]
-F1s : 
+F1s :
 [0.25958254 0.77982244 0.7540908 ]
-Precision overall: 
+Precision overall:
 0.848154674496284
-Recall : 
+Recall :
 0.5291620698589395
-F1 overall : 
+F1 overall :
 0.6517183283458811
 
 
 Result obtained on 2019-01-19 11:42:18.363473
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	True
  Stem: 	False
@@ -94,32 +94,32 @@ Padding: 	69
 train_fraction 	0.6
 validation_fraction: 	0.2
 Nr dims: 	200
- 
+
  ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 340  748 1255]
  [   0 4726 1212]
  [   0  776 4964]]
-Precisions : 
+Precisions :
 [1.         0.75616    0.66801238]
-Accuracy : 
+Accuracy :
 0.7153555381213893
-Recalls : 
+Recalls :
 [0.1451131  0.79589087 0.86480836]
-F1s : 
+F1s :
 [0.25344763 0.7755169  0.75377724]
-Precision overall: 
+Precision overall:
 0.8446980534676962
-Recall : 
+Recall :
 0.5317981032085253
-F1 overall : 
+F1 overall :
 0.6526844560216479
 
 
 Result obtained on 2019-01-19 11:46:10.382713
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	True
  Stem: 	False
@@ -129,32 +129,32 @@ Padding: 	69
 train_fraction 	0.6
 validation_fraction: 	0.2
 Nr dims: 	100
- 
+
  ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 306  725 1215]
  [   0 4806 1197]
  [   0  846 4926]]
-Precisions : 
+Precisions :
 [1.         0.75364592 0.67130008]
-Accuracy : 
+Accuracy :
 0.7159261108337494
-Recalls : 
+Recalls :
 [0.13624221 0.8005997  0.85343035]
-F1s : 
+F1s :
 [0.23981191 0.77641357 0.75148741]
-Precision overall: 
+Precision overall:
 0.8459299768252978
-Recall : 
+Recall :
 0.5246222109633885
-F1 overall : 
+F1 overall :
 0.6476129237783106
 
 
 Result obtained on 2019-01-19 14:11:52.249902
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	True
  Stem: 	False
@@ -164,32 +164,32 @@ Padding: 	69
 train_fraction 	0.6
 validation_fraction: 	0.2
 Nr dims: 	25
- 
+
  ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 319  715 1193]
  [   0 4765 1175]
  [   1  853 5000]]
-Precisions : 
+Precisions :
 [0.996875   0.75240802 0.67861021]
-Accuracy : 
+Accuracy :
 0.7192069039298196
-Recalls : 
+Recalls :
 [0.14324203 0.80218855 0.85411684]
-F1s : 
+F1s :
 [0.25049077 0.77650126 0.75631523]
-Precision overall: 
+Precision overall:
 0.8442549737635048
-Recall : 
+Recall :
 0.5312736359976034
-F1 overall : 
+F1 overall :
 0.6521571509854615
 
 
 Result obtained on 2019-01-19 20:03:06.411595
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	True
  Stem: 	False
@@ -199,32 +199,32 @@ Padding: 	69
 train_fraction 	0.6
 validation_fraction: 	0.2
 Nr dims: 	100
- 
+
  ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 330  735 1196]
  [   0 4892 1210]
  [   1  813 4844]]
-Precisions : 
+Precisions :
 [0.99697885 0.75962733 0.66813793]
-Accuracy : 
+Accuracy :
 0.7179231153270095
-Recalls : 
+Recalls :
 [0.14595312 0.80170436 0.85613291]
-F1s : 
+F1s :
 [0.25462963 0.78009887 0.7505423 ]
-Precision overall: 
+Precision overall:
 0.8481703334514781
-Recall : 
+Recall :
 0.5250956207606061
-F1 overall : 
+F1 overall :
 0.6486296793252505
 
 
 Result obtained on 2019-01-19 20:10:45.860924
- 
-PARAMETERS SET TO 
+
+PARAMETERS SET TO
 Padding: 	69
  Using pretrained vectors: 	True
  Stem: 	False
@@ -234,50 +234,48 @@ Padding: 	69
 train_fraction 	0.6
 validation_fraction: 	0.2
 Nr dims: 	50
- 
+
  ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 329  740 1267]
  [   0 4831 1166]
  [   0  816 4872]]
-Precisions : 
+Precisions :
 [1.         0.75638015 0.66694045]
-Accuracy : 
+Accuracy :
 0.7154981812994794
-Recalls : 
+Recalls :
 [0.14083904 0.80556945 0.85654008]
-F1s : 
+F1s :
 [0.24690432 0.78020026 0.74994228]
-Precision overall: 
+Precision overall:
 0.845678851180559
-Recall : 
+Recall :
 0.5297459814637056
-F1 overall : 
+F1 overall :
 0.6514277805504944
 
 
 Result obtained on 2019-01-20 01:03:14.294831
- 
+
 ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 305  807 1151]
  [   0 4801 1136]
  [   1  871 4949]]
-Precisions : 
+Precisions :
 [0.99673203 0.74100942 0.6839414 ]
-Accuracy : 
+Accuracy :
 0.7171385778475144
-Recalls : 
+Recalls :
 [0.13477684 0.80865757 0.85019756]
-F1s : 
+F1s :
 [0.23744648 0.77335696 0.75806081]
-Precision overall: 
+Precision overall:
 0.8400808245903295
-Recall : 
+Recall :
 0.5300166128973014
-F1 overall : 
+F1 overall :
 0.6499636902114243
-
-

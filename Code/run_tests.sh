@@ -1,4 +1,4 @@
-# Script performing the grid search. 
+# Script performing the grid search.
 
 #!/bin/bash
 pre_process_data_gaydhani=("True" "False")

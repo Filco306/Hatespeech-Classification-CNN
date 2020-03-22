@@ -1,24 +1,22 @@
 Result obtained on 2019-01-20 21:45:00.792050
- 
+
 ------RESULTS------
- 
-Confusion matrix : 
+
+Confusion matrix :
 [[ 583  428  786]
  [ 131 4122  557]
  [ 109   65 4421]]
-Precisions : 
+Precisions :
 [0.70838396 0.89317443 0.76700208]
-Accuracy : 
+Accuracy :
 0.8146759507230852
-Recalls : 
+Recalls :
 [0.3244296  0.85696466 0.96213275]
-F1s : 
+F1s :
 [0.44503817 0.87469496 0.85355729]
-Precision overall: 
+Precision overall:
 0.7935874045264095
-Recall : 
+Recall :
 0.6451715368179542
-F1 overall : 
+F1 overall :
 0.7117245157125027
-
-
